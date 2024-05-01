@@ -1,4 +1,4 @@
-Установка Python3 в macOS через терминал
+# Установка Python3 в macOS через терминал
 
 #Проверка установленного python
 $ python3 --version
