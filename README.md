@@ -1,7 +1,9 @@
 Установка Python3 в macOS через терминал
 
-#Проверка установленного python
+
+# Проверка установленного python
 $ python3 --version
+
 
 #Установить python
 $ sudo apt-get update && sudo apt-get upgrade
