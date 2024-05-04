@@ -2,7 +2,7 @@
 
 ## Проверяет установленный python
 ```sh
-$ python3 --version`
+$ python3 --version
 ```
 
 ## Устанавливает python, если требуется
