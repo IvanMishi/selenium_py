@@ -2,17 +2,17 @@
 
 ## Проверяет установленный python
 ```sh
-$ python3 --version
+python3 --version
 ```
 
 ## Устанавливает python, если требуется
 
 ```sh
-$ sudo apt-get update && sudo apt-get upgrade
+sudo apt-get update && sudo apt-get upgrade
 ```
 
 ```sh
-$ sudo apt-get install python3.7
+sudo apt-get install python3.7
 ```
 
 После установки открывает окно терминала и создает папку, где будут храниться виртуальные окружения.
