@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 # ссылка на страницу
-link = "http://suninjuly.github.io/simple_form_find_task.html" #
+link = "http://suninjuly.github.io/simple_form_find_task.html"
 
 # блок try используется для выполнения кода, который может вызвать исключение
 try:
