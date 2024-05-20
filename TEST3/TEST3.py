@@ -8,9 +8,9 @@ from selenium.webdriver.common.by import By
 # импортирует модуль math, который предоставляет математические функции
 import math 
 
-# ссылка на страницу
+# ссылка на страницу содержащую ссылку для перехода в форму регистрции
 link = "http://suninjuly.github.io/find_link_text"
-# переменная с мат выражением
+# переменная с мат выражением '224592' для поиска нужной ссылки
 m = str(math.ceil(math.pow(math.pi, math.e)*10000))
 
 # для того чтобы гарантировать закрытие, даже если произошла ошибка в предыдущих строках,  использует конструкцию try/finally
@@ -18,12 +18,14 @@ m = str(math.ceil(math.pow(math.pi, math.e)*10000))
 try:
     browser = webdriver.Chrome()
     browser.get(link)
+# убеждается что открыта искомая страница
+    time.sleep(2)
 
 # метод find_element, который принимает два аргумента - тип локатора и значение локатора
-
 # поиск ссылки на странице, если текст селектора совпадает с любой частью текста ссылки
     button = browser.find_element(By.PARTIAL_LINK_TEXT, m)
     button.click()
+    
 
 # поиск элемента по названию тега элемента
     input1 = browser.find_element(By.TAG_NAME, "input")
