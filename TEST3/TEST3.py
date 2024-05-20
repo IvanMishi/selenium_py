@@ -1,17 +1,20 @@
+# импортирует необходимые библиотеки
+# импортирует модуль time для работы с ожиданием
+import time 
+# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
+from selenium import webdriver 
+# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
+from selenium.webdriver.common.by import By
+# импортирует модуль math, который предоставляет математические функции
+import math 
 
-
-import time #
-import math #
-from selenium import webdriver #
-from selenium.webdriver.common.by import By #
-
- 
+# ссылка на страницу
 link = "http://suninjuly.github.io/find_link_text"
 # переменная с мат выражением
 m = str(math.ceil(math.pow(math.pi, math.e)*10000))
 
-
 # для того чтобы гарантировать закрытие, даже если произошла ошибка в предыдущих строках,  использует конструкцию try/finally
+# блок try используется для выполнения кода, который может вызвать исключение
 try:
     browser = webdriver.Chrome()
     browser.get(link)
@@ -42,6 +45,7 @@ try:
     button = browser.find_element(By.CSS_SELECTOR, "button.btn")
     button.click()
 
+# код внутри блока finally будет выполнен в любом случае
 finally:
     #  успевает скопировать код за 10 секунд
     time.sleep(10)
