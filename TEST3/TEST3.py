@@ -23,8 +23,8 @@ try:
 
 # метод find_element, который принимает два аргумента - тип локатора и значение локатора
 # поиск ссылки на странице, если текст селектора совпадает с любой частью текста ссылки
-    button = browser.find_element(By.PARTIAL_LINK_TEXT, m)
-    button.click()
+    link = browser.find_element(By.PARTIAL_LINK_TEXT, m)
+    link.click()
     
 
 # поиск элемента по названию тега элемента
