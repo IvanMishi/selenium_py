@@ -9,6 +9,7 @@ from selenium import webdriver
 # ссылка на страницу 
 link = "http://suninjuly.github.io/huge_form.html"
 
+
 # блок try используется для выполнения кода, который может вызвать исключение
 try:
 # открывает браузер Chrome
