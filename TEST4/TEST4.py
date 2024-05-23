@@ -9,17 +9,20 @@ from selenium import webdriver
 # ссылка на страницу 
 link = "http://suninjuly.github.io/huge_form.html"
 
-
-# блок try используется для выполнения кода, который может вызвать исключение
+# если в коде внутри блока try произойдет какая-то ошибка, то код внутри блока finally выполнится в любом случае.
 try:
 # открывает браузер Chrome
     browser = webdriver.Chrome()
 # переходит по ссылке
     browser.get(link)
-# ищет элеметы на веб-странице c помощью метода find_element()
+    
+# Находит все элементы на странице, которые являются элементами ввода (input) c помощью метода find_elements()
     elements = browser.find_elements(By.TAG_NAME, "input")
+# Перебирает каждый найденный элемент в списке elements
     for element in elements:
+    # Вводит текст "Мой ответ" в каждый элемент ввода
         element.send_keys("Мой ответ")
+        
 # находит и нажимает кнопку
     button = browser.find_element(By.CSS_SELECTOR, "button.btn")
     button.click()
