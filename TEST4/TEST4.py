@@ -4,7 +4,7 @@ import time
 # импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
 from selenium import webdriver 
 # импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-
+from selenium.webdriver.common.by import By
 
 # ссылка на страницу 
 link = "http://suninjuly.github.io/huge_form.html"
