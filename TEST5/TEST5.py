@@ -16,18 +16,18 @@ try:
 # переходит по ссылке
     browser.get(link)
 
-# находит и заполняет поле input1
-    input1 = browser.find_element(By.TAG_NAME, "input")
+# находит и заполняет поле input1 с помощью правил на основе X-path
+    input1 = browser.find_element(By.XPATH, "//input[@name='first_name']")
     input1.send_keys("Ivan")
-# находит и заполняет поле input2
-    input2 = browser.find_element(By.NAME, "last_name")
+# находит и заполняет поле input2 с помощью правил на основе X-path
+    input2 = browser.find_element(By.XPATH, "//input[@name='last_name']")
     input2.send_keys("Petrov")
-# находит и заполняет поле input3
-    input3 = browser.find_element(By.CLASS_NAME, "form-control.city")
+# находит и заполняет поле input3 с помощью правил на основе X-path
+    input3 = browser.find_element(By.XPATH, "//input[@class='form-control city']")
     input3.send_keys("Smolensk")
-# находит и заполняет поле input4
-    input4 = browser.find_element(By.ID, "country")
-    input4.send_keys("Russia")
+# находит и заполняет поле input4 с помощью правил на основе X-path
+    input4 = browser.find_element(By.XPATH, "//input[@id='country']")
+    input4.send_keys("Russia") 
 
 # находит элемент кнопку с помощью правил на основе X-path и нажимает на нее
     btn = browser.find_element(By.XPATH, "//button[@type='submit']")
