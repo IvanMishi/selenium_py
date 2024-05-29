@@ -6,13 +6,13 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест
 ```sh
-python3 TEST2/TEST2.py
+python3 TEST4/TEST4.py
 ```
 
-- [x] незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/huge_form.html
+- [x]  незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/huge_form.html
 - [x]  заполняет форму из 100 обязательных полей за ограниченное время
 - [x]  нажимает кнопку 'Submit'
-
+- [x] закрывает браузер
 
 
 ## В этой задаче
