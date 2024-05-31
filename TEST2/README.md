@@ -16,7 +16,7 @@ python3 TEST2/TEST2.py
 ```sh
 python3 TEST3/TEST3.py >> TEST3/output.txt
 ```
-Где TEST3.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где TEST2.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегестированный пользователь переходит по ссылке https://suninjuly.github.io/simple_form_find_task.html
