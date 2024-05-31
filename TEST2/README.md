@@ -14,7 +14,7 @@ python3 TEST2/TEST2.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST3/TEST3.py >> TEST3/output.txt
+python3 TEST2/TEST2.py >> TEST2/output.txt
 ```
 Где TEST2.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
