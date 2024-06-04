@@ -1,5 +1,5 @@
 # импортирует необходимые библиотеки
-импортирует модуль Select который позволяет управлять выпадающими списками на веб-страницах,
+# импортирует модуль Select который позволяет управлять выпадающими списками на веб-страницах,
 from selenium.webdriver.support.ui import Select
 # импортирует модуль time для работы с ожиданием
 import time 
@@ -21,22 +21,26 @@ with webdriver.Chrome() as browser:
     a_element = browser.find_element(By.CSS_SELECTOR, "[id='num1']").text
     b_element = browser.find_element(By.CSS_SELECTOR, "[id='num2']").text
 # преобразует значения в числовые и складывает их
-    sum = (int(a_element)+int(a_element))
+    sum = (int(a_element)+int(b_element))
 
 # ищет выпадающий список <select> с дочерними элементами <option>, у каждого из которых есть атрибут value
     select1 = Select(browser.find_element(By.TAG_NAME, "select"))
 # выбирает опции в выпадающем списке по значению равной сумме чисел
     select1.select_by_value(str(sum))
-    
+  
 # нажимает кнопку 'submit'   
     button = browser.find_element(By.CSS_SELECTOR, "[type='submit']").click()
 
-
-    # успеваем скопировать код за 10 секунд
-    time.sleep(1)
-    # закрываем браузер после всех манипуляций
-    browser.quit()
+# получает alert на веб-странице
+    alert = browser.switch_to.alert
+    # сохраняет текст предупреждения (alert) в переменной actual_result
+    actual_result = alert.text
+    # ждет 2 секунды
+    time.sleep(2)
+    # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
+    alert.accept()
+    print('Ответ', actual_result)
 
     # браузер закроется автоматически после завершения блока `with`
-
 # не забывает оставить пустую строку в конце файла
+
