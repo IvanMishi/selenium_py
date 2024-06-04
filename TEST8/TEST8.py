@@ -27,7 +27,7 @@ with webdriver.Chrome() as browser:
     select1 = Select(browser.find_element(By.TAG_NAME, "select"))
 # выбирает опции в выпадающем списке по значению равной сумме чисел
     select1.select_by_value(str(sum))
-    
+  
 # нажимает кнопку 'submit'   
     button = browser.find_element(By.CSS_SELECTOR, "[type='submit']").click()
 
@@ -43,3 +43,4 @@ with webdriver.Chrome() as browser:
 
     # браузер закроется автоматически после завершения блока `with`
 # не забывает оставить пустую строку в конце файла
+
