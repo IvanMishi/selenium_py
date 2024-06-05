@@ -17,6 +17,7 @@ with webdriver.Chrome() as browser:
     browser = webdriver.Chrome()
 # переходит по ссылке
     browser.get(link)
+    
 # ищет элементы с числами и получает из них текст
     a_element = browser.find_element(By.CSS_SELECTOR, "[id='num1']").text
     b_element = browser.find_element(By.CSS_SELECTOR, "[id='num2']").text
@@ -39,8 +40,8 @@ with webdriver.Chrome() as browser:
     time.sleep(2)
     # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
+# выводит значение переменной actual_result в консоль
     print('Ответ', actual_result)
 
     # браузер закроется автоматически после завершения блока `with`
-# не забывает оставить пустую строку в конце файла
-
+# оставляет пустую строку в конце файла
