@@ -16,7 +16,7 @@ python3 TEST8/TEST8.py
 ```sh
 python3 TEST8/TEST8.py >> TEST8/output.txt
 ```
-Где TEST7.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где TEST8.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегестированный пользователь переходит по ссылке https://suninjuly.github.io/selects1.html
