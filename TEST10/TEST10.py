@@ -14,11 +14,9 @@ def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
 
-
 link = "https://SunInJuly.github.io/execute_script.html"
 
 # Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-
 with webdriver.Chrome() as browser:
 # открывает браузер Chrome
     browser = webdriver.Chrome()
