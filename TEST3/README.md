@@ -39,7 +39,6 @@ link = browser.find_element(By.LINK_TEXT, 'some text')
 ```
 Ищет элемент по подстроке в тексте ссылки
 ```sh
-link = browser.find_element(By.PARTIAL_LINK_TEXT, 'text')
-link.click()
+link = browser.find_element(By.PARTIAL_LINK_TEXT, 'text').click()
 ```
 
