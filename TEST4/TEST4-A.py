@@ -5,9 +5,13 @@ import time
 from selenium import webdriver 
 # импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
 from selenium.webdriver.common.by import By
+# импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
+import re
+
 
 # ссылка на страницу 
 link = "http://suninjuly.github.io/huge_form.html"
+
 
 # если в коде внутри блока try произойдет какая-то ошибка, то код внутри блока finally выполнится в любом случае.
 try:
