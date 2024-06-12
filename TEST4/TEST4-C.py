@@ -41,11 +41,11 @@ try:
 
     # получает alert на веб-странице
     alert = browser.switch_to.alert
-    # выводит числовое значение полученного текста из alert в консоль
+    # выводит числовое значение полученного текста из alert в консоль в качестве ответа
     print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
     # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
-   
+
 
 # код внутри блока finally будет выполнен в любом случае
 finally:
