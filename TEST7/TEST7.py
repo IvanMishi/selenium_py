@@ -46,13 +46,10 @@ with webdriver.Chrome() as browser:
   
     # получает alert на веб-странице
     alert = browser.switch_to.alert
-    # сохраняет текст предупреждения (alert) в переменной actual_result
-    actual_result = alert.text
-    # ждет 2 секунды
-    time.sleep(2)
+    # выводит числовое значение полученного текста из alert в консоль в качестве ответа
+    print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
     # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
-    print('Ответ', actual_result)
     # браузер закроется автоматически после завершения блока `with`
 
 # не забываем оставить пустую строку в конце файла
