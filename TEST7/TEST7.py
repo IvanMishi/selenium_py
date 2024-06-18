@@ -25,7 +25,7 @@ with webdriver.Chrome() as browser:
 
  
     x_element = browser.find_element(By.CSS_SELECTOR, "[id='treasure']")
-# извлекает текстовое содержимое найденного элемента
+    # извлекает текстовое содержимое найденного элемента
     x = x_element.get_attribute("valuex")
 
     y = calc(x)
@@ -43,7 +43,6 @@ with webdriver.Chrome() as browser:
     button1 = browser.find_element(By.CSS_SELECTOR, "[type='submit']")
     button1.click()
 
-  
     # получает alert на веб-странице
     alert = browser.switch_to.alert
     # выводит числовое значение полученного текста из alert в консоль в качестве ответа
