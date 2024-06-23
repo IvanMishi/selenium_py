@@ -7,8 +7,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 # импортирует модуль math, который предоставляет математические функции
 import math 
+# импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
+import re
 
-# функция с мат выражением  для заполнения поля ввода рассчитывает логарифм натуральный от модуля произведения 12 и синуса от целочисленного значения x. 
+# функция с мат выражением для заполнения поля ввода рассчитывает логарифм натуральный от модуля произведения 12 и синуса от целочисленного значения x. 
 def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
@@ -18,30 +20,28 @@ link = "http://suninjuly.github.io/get_attribute.html"
 
 # Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
 with webdriver.Chrome() as browser:
-# открывает браузер Chrome
+    # открывает браузер Chrome
     browser = webdriver.Chrome()
-# переходит по ссылке
+    # переходит по ссылке
     browser.get(link)
 
  
     x_element = browser.find_element(By.CSS_SELECTOR, "[id='treasure']")
     # извлекает текстовое содержимое найденного элемента
     x = x_element.get_attribute("valuex")
-
     y = calc(x)
+    
+    # заполняет поле ввода текста на веб-странице данными из переменной y
+    input = browser.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(y)
 
+    # отмечает чекбокс на веб-странице
+    checkbox = browser.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
 
-    input1 = browser.find_element(By.CSS_SELECTOR, "[type='text']")
-    input1.send_keys(y)
-
-    check1 = browser.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']")
-    check1.click()
-
-    radio1 = browser.find_element(By.CSS_SELECTOR, "[id='robotsRule']")
-    radio1.click()
-
-    button1 = browser.find_element(By.CSS_SELECTOR, "[type='submit']")
-    button1.click()
+    # выбирает радиокнопку на веб-странице
+    radiobutton = browser.find_element(By.CSS_SELECTOR, "[id='robotsRule']").click()
+ 
+    # нажимает кнопку отправки формы на веб-странице
+    button = browser.find_element(By.CSS_SELECTOR, "[type='submit']").click()
 
     # получает alert на веб-странице
     alert = browser.switch_to.alert
@@ -51,4 +51,4 @@ with webdriver.Chrome() as browser:
     alert.accept()
     # браузер закроется автоматически после завершения блока `with`
 
-# не забываем оставить пустую строку в конце файла
+# оставляет пустую строку в конце файла
