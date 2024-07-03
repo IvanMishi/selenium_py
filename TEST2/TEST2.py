@@ -1,44 +1,46 @@
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
+# Импортирует необходимые библиотеки
+# Импортирует модуль time для работы с ожиданием
+import time
+# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
+from selenium import webdriver
+# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
 from selenium.webdriver.common.by import By
+# импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
+import re
 
-
-# ссылка на страницу
+# Ссылка на страницу
 link = "http://suninjuly.github.io/simple_form_find_task.html"
 
 # блок try используется для выполнения кода, который может вызвать исключение
 try:
-    # открывает браузер Chrome
-    driver = webdriver.Chrome()
-    # переходит по ссылке
-    driver.get(link)
-    # находит и заполняем поле input1
-    input1 = driver.find_element(By.TAG_NAME, "input").send_keys("Ivan")
-    # находит и заполняем поле input2
-    input2 = driver.find_element(By.NAME, "last_name").send_keys("Petrov")
-    # находит и заполняем поле input3
-    input3 = driver.find_element(By.CLASS_NAME, "form-control.city").send_keys("Smolensk")
-    # находит и заполняем поле input4
-    input4 = driver.find_element(By.ID, "country").send_keys("Russia")
-    # находит и нажимает кнопку
-    button = driver.find_element(By.CSS_SELECTOR, "button.btn").click()
+    # Открывает браузер Chrome
+    webdriver = webdriver.Chrome()
+    # Переходит по ссылке
+    webdriver.get(link)
+    # Находит и заполняет поле First name
+    input_first_name = webdriver.find_element(By.TAG_NAME, "input").send_keys("Ivan")
+    # Находит и заполняет поле Last name
+    input_last_name = webdriver.find_element(By.NAME, "last_name").send_keys("Petrov")
+    # Находит и заполняет поле City
+    input_сity = webdriver.find_element(By.CLASS_NAME, "form-control.city").send_keys("Smolensk")
+    # Находит и заполняет поле Country
+    input_сountry = webdriver.find_element(By.ID, "country").send_keys("Russia")
+    # Находит и нажимает кнопку Submit
+    button_submit = webdriver.find_element(By.CSS_SELECTOR, "button.btn").click()
 
-# получает alert на веб-странице
-    alert = driver.switch_to.alert
-    # сохраняет текст предупреждения (alert) в переменной actual_result
+    # Получает alert на веб-странице
+    alert = webdriver.switch_to.alert
+    # Сохраняет текст предупреждения (alert) в переменной actual_result
     actual_result = alert.text
-    # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
+    # Выводит числовое значение полученного текста из alert в консоль в качестве ответа
+    print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
+    # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
-# выводит значение переменной actual_result в консоль
-    print('Ответ', actual_result)
 
-# код внутри блока finally будет выполнен в любом случае
+
+# Код внутри блока finally будет выполнен в любом случае
 finally:
-    # закрывает браузер
-    driver.quit()
+    # Закрывает браузер
+    webdriver.quit()
 
-# не забывает оставить пустую строку в конце файла
+# Не забывает оставить пустую строку в конце файла
