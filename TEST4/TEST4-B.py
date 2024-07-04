@@ -1,49 +1,54 @@
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
+# Импортирует необходимые библиотеки
+# Импортирует модуль time для работы с ожиданием
+import time
+# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
 from selenium import webdriver
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
+# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
 from selenium.webdriver.common.by import By
-# импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
+# Импортирует модуль math, который предоставляет математические функции
+import math
+# Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
 import re
 
 
-# ссылка на страницу 
+# Ссылка на страницу
 link = "http://suninjuly.github.io/huge_form.html"
 
 
-# если в коде внутри блока try произойдет какая-то ошибка, то код внутри блока finally выполнится в любом случае.
+# Блок try используется для выполнения кода, который может вызвать исключение
 try:
-    # открывает браузер Chrome
-    browser = webdriver.Chrome()
-    # переходит по ссылке
-    browser.get(link)
+    # Открывает браузер Chrome
+    webdriver = webdriver.Chrome()
+    # Переходит по ссылке
+    webdriver.get(link)
+    # Убеждается что открыта искомая страница
+    time.sleep(1)
 
 # Каскадный поиск:  находит родительский элемент, затем находит дочерние элементы внутри родительского, которые являются элементами ввода (input) c помощью метода find_elements()
 
-    # ищет родительский элемент
-    parent_element = browser.find_element(By.CSS_SELECTOR, 'form[action="#"][method="get"]')
+    # Находит родительский элемент
+    parent_element = webdriver.find_element(By.CSS_SELECTOR, 'form[action="#"][method="get"]')
 
-    # проходит по каждому дочернему элемемену внутри родительского с тегом 'input' и вводит текст "Мой ответ"
-    [child_element.send_keys("Мой ответ") for child_element in parent_element.find_elements(By.TAG_NAME, "input")]        
+    # Проходит по каждому дочернему элемемену внутри родительского с тегом 'input' и вводит текст "Мой ответ"
+    [child_element.send_keys("Ответ") for child_element in parent_element.find_elements(By.TAG_NAME, "input")]        
 
+    # Находит и нажимает кнопку Submit с помощью правил на основе CSS
+    button_submit = webdriver.find_element(By.CSS_SELECTOR, "button.btn").click()
 
-    # находит и нажимает кнопку
-    button = browser.find_element(By.CSS_SELECTOR, "button.btn").click()
-
-    # получает alert на веб-странице
-    alert = browser.switch_to.alert
-    # выводит числовое значение полученного текста из alert в консоль в качестве ответа
+    # Получает alert на веб-странице
+    alert = webdriver.switch_to.alert
+    # Сохраняет текст предупреждения (alert) в переменной actual_result
+    actual_result = alert.text
+    # Выводит числовое значение полученного текста из alert в консоль в качестве ответа
     print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
-    # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
+    # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
 
 
-# код внутри блока finally будет выполнен в любом случае
+# Код внутри блока finally будет выполнен в любом случае
 finally:
-    # закрывает браузер
-    browser.quit()
+    # Закрывает браузер
+    webdriver.quit()
 
-# оставляет пустую строку в конце файла
+# Не забывает оставить пустую строку в конце файла
 
