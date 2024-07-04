@@ -11,7 +11,7 @@ import math
 import re
 
 
-# Ссылка на страницу содержащую ссылку для перехода в форму регистрции
+# Ссылка на страницу
 link = "http://suninjuly.github.io/find_link_text"
 # Переменная с мат выражением  для поиска нужной ссылки
 m = str(math.ceil(math.pow(math.pi, math.e)*10000))
