@@ -37,7 +37,7 @@ try:
     # Находит и заполняет поле "City" по значению атрибута class
     input_сity = webdriver.find_element(By.CLASS_NAME, "form-control.city").send_keys("Smolensk")
     # Находит и заполняет поле "Country" по id элемента
-    input4 = webdriver.find_element(By.ID, "country").send_keys("Russia")
+    input_county = webdriver.find_element(By.ID, "country").send_keys("Russia")
     # Находит и нажимает кнопку Submit с помощью правил на основе CSS
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "button.btn").click()
 
