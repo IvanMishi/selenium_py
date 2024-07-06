@@ -33,7 +33,7 @@ try:
     # Находит и заполняет поле "First name" по названию тега
     input_first_name = webdriver.find_element(By.TAG_NAME, "input").send_keys("Ivan")
     # Находит и заполняет поле "Last name" по атрибуту name
-    input_last_nam = webdriver.find_element(By.NAME, "last_name").send_keys("Petrov")
+    input_last_name = webdriver.find_element(By.NAME, "last_name").send_keys("Petrov")
     # Находит и заполняет поле "City" по значению атрибута class
     input_сity = webdriver.find_element(By.CLASS_NAME, "form-control.city").send_keys("Smolensk")
     # Находит и заполняет поле "Country" по id элемента
