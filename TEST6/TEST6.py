@@ -50,9 +50,6 @@ try:
     # Сохраняет текст предупреждения (alert) в переменной actual_result
     actual_result = alert.text
     # Выводит числовое значение полученного текста из alert в консоль в качестве ответа
-    print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
-    # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
-    alert.accept()
 
 except ValueError as e:
     print(f"Произошла ошибка при обработке значений на веб-странице: {e}")
