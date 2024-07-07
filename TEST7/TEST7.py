@@ -1,54 +1,58 @@
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
+# Импортирует необходимые библиотеки
+# Импортирует модуль time для работы с ожиданием
+import time
+# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
+from selenium import webdriver
+# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
 from selenium.webdriver.common.by import By
-# импортирует модуль math, который предоставляет математические функции
-import math 
-# импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
+# Импортирует модуль math, который предоставляет математические функции
+import math
+# Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
 import re
 
-# функция с мат выражением для заполнения поля ввода рассчитывает логарифм натуральный от модуля произведения 12 и синуса от целочисленного значения x. 
+# Функция с мат выражением для заполнения поля ввода рассчитывает логарифм натуральный от модуля произведения 12 и синуса от целочисленного значения x. 
 def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
-# ссылка на страницу
+# Ссылка на страницу
 link = "http://suninjuly.github.io/get_attribute.html"
-
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 # Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
-    # открывает браузер Chrome
-    driver = webdriver.Chrome()
-    # переходит по ссылке
-    driver.get(link)
+# Открывает браузер Chrome
+with webdriver.Chrome() as webdriver:
+    # Переходит по ссылке
+    webdriver.get(link)
+    # Убеждается что открыта искомая страница
+    time.sleep(1)
 
  
-    x_element = driver.find_element(By.CSS_SELECTOR, "[id='treasure']")
+    x_element = webdriver.find_element(By.CSS_SELECTOR, "[id='treasure']")
     # извлекает текстовое содержимое найденного элемента
     x = x_element.get_attribute("valuex")
     y = calc(x)
     
-    # заполняет поле ввода текста на веб-странице данными из переменной y
-    input_area = driver.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(y)
+    # Заполняет поле ввода текста на веб-странице данными из переменной y
+    input_area = webdriver.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(y)
+    # Отмечает чекбокс на веб-странице
+    checkbox = webdriver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
+    # Выбирает радиокнопку на веб-странице
+    radio_button = webdriver.find_element(By.CSS_SELECTOR, "[id='robotsRule']").click()
+    # Нажимает кнопку отправки формы на веб-странице
+    button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
 
-    # отмечает чекбокс на веб-странице
-    checkbox = driver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
-
-    # выбирает радиокнопку на веб-странице
-    radio_button = driver.find_element(By.CSS_SELECTOR, "[id='robotsRule']").click()
- 
-    # нажимает кнопку отправки формы на веб-странице
-    button_submit = driver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
-
-    # получает alert на веб-странице
-    alert = driver.switch_to.alert
-    # выводит числовое значение полученного текста из alert в консоль в качестве ответа
+    # Получает alert на веб-странице
+    alert = webdriver.switch_to.alert
+    # Сохраняет текст предупреждения (alert) в переменной actual_result
+    actual_result = alert.text
+    # Выводит числовое значение полученного текста из alert в консоль в качестве ответа
     print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
-    # принимает и закрывает alert путем нажатия кнопки "OK" (accept)
+    # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
 
-# браузер закроется автоматически после завершения блока `with`
-# оставляет пустую строку в конце файла
+    # Измеряет время выполнения кода и выводит его в консоль.
+    print(f'Time is running {time.time() - start}')
+
+# Браузер закроется автоматически после завершения блока `with`
+# Не забывает оставить пустую строку в конце файла

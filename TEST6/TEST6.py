@@ -17,7 +17,8 @@ def calc(x):
 
 # Ссылка на страницу
 link = "https://suninjuly.github.io/math.html"
-
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 # Блок try используется для выполнения кода, который может вызвать исключение
 try:
@@ -53,12 +54,15 @@ try:
     print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
+    
 
 except ValueError as e:
     print(f"Произошла ошибка при обработке значений на веб-странице: {e}")
 
 # Код внутри блока finally будет выполнен в любом случае
 finally:
+    # Измеряет время выполнения кода и выводит его в консоль.
+    print(f'Time is running {time.time() - start}')
     # Закрывает браузер
     webdriver.quit()
 
