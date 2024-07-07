@@ -15,7 +15,8 @@ import re
 link = "http://suninjuly.github.io/find_link_text"
 # Переменная с мат выражением  для поиска нужной ссылки
 m = str(math.ceil(math.pow(math.pi, math.e)*10000))
-
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 # Блок try используется для выполнения кода, который может вызвать исключение
 try:
@@ -53,6 +54,8 @@ try:
 
 # Код внутри блока finally будет выполнен в любом случае
 finally:
+    # Измеряет время выполнения кода и выводит его в консоль.
+    print(f'Time is running {time.time() - start}')
     # Закрывает браузер
     webdriver.quit()
 

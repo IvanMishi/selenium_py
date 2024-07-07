@@ -13,7 +13,8 @@ import re
 
 # Ссылка на страницу
 link = "http://suninjuly.github.io/huge_form.html"
-
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 # Блок try используется для выполнения кода, который может вызвать исключение
 try:
@@ -58,6 +59,9 @@ try:
 
 # Код внутри блока finally будет выполнен в любом случае
 finally:
+finally:
+    # Измеряет время выполнения кода и выводит его в консоль.
+    print(f'Time is running {time.time() - start}')
     # Закрывает браузер
     webdriver.quit()
 

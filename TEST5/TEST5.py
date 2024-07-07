@@ -13,7 +13,8 @@ import re
 
 # Ссылка на страницу
 link = "http://suninjuly.github.io/find_xpath_form"
-
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 # Блок try используется для выполнения кода, который может вызвать исключение
 try:
@@ -51,6 +52,8 @@ except ValueError as e:
 
 # Код внутри блока finally будет выполнен в любом случае
 finally:
+    # Измеряет время выполнения кода и выводит его в консоль.
+    print(f'Time is running {time.time() - start}')
     # Закрывает браузер
     webdriver.quit()
 
