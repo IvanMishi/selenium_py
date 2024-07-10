@@ -51,8 +51,9 @@ alert.accept()
 assert actual_result == expected_result, f"Текст алерта не соответствует ожидаемому. Полученный текст: {actual_result}, Ожидаемый текст: {expected_result}" 
 print(f'Полученный текст алерта "{actual_result}" соответствует ожидаемому результату.')
 
-# Измеряет время выполнения определенного участка кода.
-start = time.time()
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
 
 # закрывает браузер
 webdriver.quit()
