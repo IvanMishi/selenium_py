@@ -25,7 +25,7 @@ python3 TEST3/TEST3.py >> TEST3/output.txt
 - [x] заполняет формы данными и нажимает  кнопку submit
 - [x] закрывает браузер
 
-## В этой задаче
+## В задаче test_A
 Программа ищет элементы по тексту ссылки, используя метод `find_element_by_link_text`. \
 В ходе теста программа формирует математическое выражение `str(math.ceil(math.pow(math.pi, math.e) * 10000))`. \
 Результат вычисления этого выражения преобразуется в строку и сохраняется в переменной `m = '224592'` \
@@ -37,6 +37,9 @@ python3 TEST3/TEST3.py >> TEST3/output.txt
 ```sh
 link = browser.find_element(By.LINK_TEXT, 'some text')
 ```
+
+## В задаче test_B
+
 Ищет элемент по подстроке в тексте ссылки
 ```sh
 link = browser.find_element(By.PARTIAL_LINK_TEXT, 'text').click()
