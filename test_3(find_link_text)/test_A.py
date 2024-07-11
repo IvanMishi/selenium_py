@@ -29,7 +29,7 @@ try:
 
 
     # Находит элемент на веб-странице, текст ссылки которого содержит подстроку из переменной m, и нажимает на него
-    element_link = webdriver.find_element(By.PARTIAL_LINK_TEXT, m).click()
+    element_link = webdriver.find_element(By.LINK_TEXT, m).click()
 
     # Находит и заполняет поле "First name" по названию тега
     input_first_name = webdriver.find_element(By.TAG_NAME, "input").send_keys("Ivan")
