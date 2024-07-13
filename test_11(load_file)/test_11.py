@@ -37,9 +37,8 @@ with webdriver.Chrome() as webdriver:
     file_path = os.path.join(current_dir, 'file.txt')
     load_file = webdriver.find_element(By.CSS_SELECTOR, "[name='file']")
     load_file.send_keys(file_path)
-
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
-
+ 
     # Получает alert на веб-странице
     alert = webdriver.switch_to.alert
     # Сохраняет текст предупреждения (alert) в переменной actual_result
