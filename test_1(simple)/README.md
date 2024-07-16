@@ -14,9 +14,9 @@ python3 test_1(simple)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST1/TEST1.py >> TEST1/output.txt
+python3 test_1(simple)/test_A.py >> test_1(simple)/output.txt
 ```
-Где TEST1.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегестированный пользователь переходит по ссылке [http://suninjuly.github.io/simple_form_find_task.html](https://suninjuly.github.io/text_input_task.html)
