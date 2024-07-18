@@ -14,7 +14,7 @@ python3 test_3(find_link_text)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST3/TEST3.py >> TEST3/output.txt
+python3 test_3(find_link_text)/test_A.py >> test_3(find_link_text)/output.txt
 ```
 Где TEST3.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
