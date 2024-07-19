@@ -10,7 +10,7 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 TEST3/TEST3.py
+python3 test_4(find_elements)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
