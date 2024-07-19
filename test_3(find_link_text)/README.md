@@ -16,7 +16,7 @@ python3 test_3(find_link_text)/test_A.py
 ```sh
 python3 test_3(find_link_text)/test_A.py >> test_3(find_link_text)/output.txt
 ```
-Где TEST3.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/find_link_text
