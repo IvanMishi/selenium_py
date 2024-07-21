@@ -24,6 +24,7 @@ python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 - [x] Отмечает 'checkbox'
 - [x] Выбирает радиокнопку 'Robots rule!'
 - [x] Нажимает кнопку 'Submit'
+- [x] Закрывает браузер
 
 
 
