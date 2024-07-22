@@ -10,21 +10,21 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 test_7(checkbox_radiobuttob)/test_A.py
+python3 test_7(checkbox_radiobutton)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST7/TEST7.py >> TEST7/output.txt
+python3 test_7(checkbox_radiobutton)/test_A.py >> test_7(checkbox_radiobutton)/output.txt
 ```
-Где TEST7.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегестированный пользователь переходит по ссылке https://suninjuly.github.io/get_attribute.html
 - [x] Ищет картинку (сундук с сокровищами) и получает у этого элемента значение атрибута valuex
 - [x] Считает математическую функцию от x и вводит ответ в текстовое поле.
 - [x] Отмечает чекбокс "I'm the robot".
-- [x] Выбирает радиокнопку "Robots rule!
-- [x] Нажимает на кнопку "Submit"
-- [x] Закрывает браузер
+- [x] Выбирает радиокнопку "Robots rule!".
+- [x] Нажимает на кнопку "Submit".
+- [x] Закрывает браузер.
 
 ##  В этой задаче
