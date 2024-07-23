@@ -24,6 +24,7 @@ python3 TEST6./TEST6.py >> TEST6/output.txt
 - [x] Ставит отметку 'checkbox'
 - [x] Выбирает радиокнопку 'Robots rule!'
 - [x] Нажимает кнопку 'Submit'
+- [x] Закрывает браузер
 
 
 
