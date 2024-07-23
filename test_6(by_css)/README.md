@@ -10,18 +10,18 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 TEST6/TEST6.py
+python3 test_6(by_css)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST6./TEST6.py >> TEST6/output.txt
+python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 ```
-Где TEST6.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегистрированный пользователь переходит по ссылке [http://suninjuly.github.io/huge_form.html](https://suninjuly.github.io/math.html)
 - [x] Ищет цифру-подсказку для вычисления математическим выражением и заполнения поля данными
-- [x] Ставит отметку 'checkbox'
+- [x] Отмечает 'checkbox'
 - [x] Выбирает радиокнопку 'Robots rule!'
 - [x] Нажимает кнопку 'Submit'
 - [x] Закрывает браузер

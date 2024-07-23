@@ -10,19 +10,19 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 TEST5/TEST5.py
+python3 test_5(by_xpath)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST5/TEST5.py >> TEST5/output.txt
+python3 test_5(by_xpath)/test_A.py >> test_5(by_xpath)/output.txt
 ```
-Где TEST5.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где TEST_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
-- [x] незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/find_xpath_form
-- [x] выбирает формы по x-path локатору и заполняет данными
-- [x] находит кнопку 'Submit' по x-path локатору и нажимает на нее
-- [x] закрывает браузер
+- [x] Незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/find_xpath_form
+- [x] Выбирает формы по x-path локатору и заполняет данными
+- [x] Находит кнопку 'Submit' по x-path локатору и нажимает на нее
+- [x] Закрывает браузер
 
 
 

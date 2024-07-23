@@ -10,13 +10,13 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 TEST3/TEST3.py
+python3 test_4(find_elements)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST3/TEST3.py >> TEST3/output.txt
+python3 test_4(find_elements)/test_A.py >> test_4(find_elements)/output.txt
 ```
-Где TEST3.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] незарегистрированный пользователь переходит по ссылке http://suninjuly.github.io/find_link_text
