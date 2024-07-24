@@ -10,13 +10,13 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 TEST8/TEST8.py
+python3 test_8(select_by_value)/test_A.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 TEST8/TEST8.py >> TEST8/output.txt
+python3 test_8(select_by_value)/test_A.py >> test_8(select_by_value)/output.txt
 ```
-Где TEST8.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 ## Тестовые данные
 - [x] Незарегестированный пользователь переходит по ссылке https://suninjuly.github.io/selects1.html
