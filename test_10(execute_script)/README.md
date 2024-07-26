@@ -28,7 +28,7 @@ python3 test_10(execute_script)/test_A.py >> test_10(execute_script)/output.txt
 - [x] Нажимает на кнопку "Submit".
 - [x] Закрывает браузер.
 
-##  В этой задаче
+##  В задаче test_A
 
 Программа использует метод .execute_script() для выполнения JavaScript кода на странице и обеспечения видимости элементов, скрытых футером. Если элемент перекрыт другим элементом, возникает ошибка:
 ```selenium.common.exceptions.WebDriverException: Message: unknown error: Element <button type="submit" class="btn btn-default" style="margin-bottom: 1000px;">...</button> is not clickable at point (87, 420). Other element would receive the click: <p>...</p>```
@@ -43,8 +43,8 @@ Selenium кликает по центру элемента, что может п
 Этот скрипт заставляет браузер прокрутить страницу, чтобы элемент был видим. 
 Для клика на перекрытую кнопку необходимо выполнить такие команды:
 ```
-button = browser.find_element(By.TAG_NAME, "button")
-browser.execute_script("return arguments[0].scrollIntoView(true);", button)
+button = webdriver.find_element(By.TAG_NAME, "button")
+webdriver.execute_script("return arguments[0].scrollIntoView(true);", button)
 button.click()
 ```
 Код передает js-скрипт и найденный элемент button в метод execute_script для прокрутки страницы к элементу. 
@@ -52,3 +52,14 @@ button.click()
 Также можно проскроллить всю страницу на определенное количество пикселей. 
 Например, данная команда прокручивает страницу на 100 пикселей вниз:
 ```browser.execute_script("window.scrollBy(0, 100);")```
+
+## В задаче test_B
+
+Программа использует цикл for для итерации по 100 чекбоксам. \
+Для каждого чекбокса выполняется клик, после чего страница прокручивается вниз с помощью следующего кода:
+```for tag_input in input_elements:
+        webdriver.execute_script("return arguments[0].scrollIntoView(true);", tag_input)
+        tag_input.click()```
+Когда пользователь кликает по чекбоксу на сайте, в элементе span появляется либо не появляется число. \
+Программа собирает все появившиеся числа в список и выводит сумму этих чисел в консоль. \
+Этот подход подходит для обычных сайтов без динамической подгрузки данных.
