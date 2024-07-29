@@ -1,30 +1,39 @@
-# Импорт необходимых модулей из библиотеки Selenium
+# Импортирует необходимые библиотеки
+import time
+# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
 from selenium import webdriver
+# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
 from selenium.webdriver.common.by import By
 
-# Создание экземпляра WebDriver с использованием браузера Chrome
+
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
+# Открывает браузер Chrome
 with webdriver.Chrome() as webdriver:
-    # Загрузка указанного URL в веб-браузере
+    # Переходит по ссылке
     webdriver.get("https://parsinger.ru/selenium/5.7/4/index.html")
-    
-    # Прокрутка страницы до тех пор, пока на странице не будет как минимум 1000 элементов input
+    # Убеждается что открыта искомая страница
+    time.sleep(1)
+    # Прокручивает страницу до тех пор, пока на странице не будет как минимум 1000 элементов input
     while len(webdriver.find_elements(By.CSS_SELECTOR, "input")) < 1000:
-        # Находим последний дочерний контейнер на странице
+        # Находит последний дочерний контейнер на странице
         last = webdriver.find_element(By.CSS_SELECTOR, ".child_container:last-child")
-        # Прокручиваем последний дочерний элемент в видимую область
+        # Прокручивает последний дочерний элемент в видимую область
         webdriver.execute_script("return arguments[0].scrollIntoView(true)", last)
-    
+
     # Перебираем все элементы чекбоксов на странице
     for checkbox in webdriver.find_elements(By.CSS_SELECTOR, "input"):
-        # Проверяем, является ли значение чекбокса четным
+        # Проверяет, является ли значение чекбокса четным
         if int(checkbox.get_attribute("value")) % 2 == 0:
-            # Прокручиваем чекбокс в видимую область
+            # Прокручивает чекбокс в видимую область
             webdriver.execute_script("return arguments[0].scrollIntoView(true)", checkbox)
-            # Устанавливаем чекбокс в состояние выбранного
+            # Выбирает чекбокс
             checkbox.click()
-    
-    # Находим и нажимаем кнопку alert на странице
+
+    # Находит и нажимает кнопку alert на странице
     webdriver.find_element(By.CSS_SELECTOR, ".alert_button").click()
-    
-    # Выводим текст из диалогового окна alert
-    print(webdriver.switch_to.alert.text)
+    # Выводит текст из диалогового окна alert в качестве ответа
+    print(f'Ответ: {webdriver.switch_to.alert.text}')
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")

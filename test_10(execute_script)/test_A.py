@@ -1,6 +1,4 @@
 # Импортирует необходимые библиотеки
-# Импортирует модуль Select который позволяет управлять выпадающими списками на веб-страницах
-from selenium.webdriver.support.ui import Select
 # Импортирует модуль time для работы с ожиданием
 import time
 # Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
@@ -10,18 +8,18 @@ from selenium.webdriver.common.by import By
 # Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
 import re
 # Импортирует модуль math, который предоставляет математические функции
-import math 
+import math
 
 
 # Функция calc(x) возвращает результат логарифма натурального модуля выражения abs(12*math.sin(int(x)))
 def calc(x):
-  return str(math.log(abs(12*math.sin(int(x)))))
+    return str(math.log(abs(12 * math.sin(int(x)))))
+
 
 # Ссылка на страницу
 link = "https://SunInJuly.github.io/execute_script.html"
 # Измеряет время выполнения определенного участка кода.
 start = time.time()
-
 
 # Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
 # Открывает браузер Chrome
@@ -40,14 +38,12 @@ with webdriver.Chrome() as webdriver:
     # Прокручивает страницу так, чтобы кнопка была видимой используя execute_script 
     webdriver.execute_script("return arguments[0].scrollIntoView(true);", button_submit)
 
-  
     # Отмечает чекбокс на веб-странице
     checkbox = webdriver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
     # Выбирает радиокнопку на веб-странице
     radio_button = webdriver.find_element(By.CSS_SELECTOR, "[id='robotsRule']").click()
     # Нажимает кнопку отправки формы на веб-странице
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
-
 
     # Получает alert на веб-странице
     alert = webdriver.switch_to.alert
