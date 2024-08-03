@@ -22,8 +22,6 @@ python3 test_12(switch_to_alert)/test_12_A.py >> test_12(switch_to_alert)/output
 - [x] незарегестированный пользователь переходит по ссылке http://suninjuly.github.io/file_input.html
 - [x]
 - [x] 
-- [x]
-- [x]
 
 ##  В этой задаче
 
