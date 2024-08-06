@@ -30,10 +30,11 @@ python3 test_12/test_A.py >> test_12/output.txt
 ## ActionChains — класс для автоматизации сложных пользовательских действий, таких как движения мыши, нажатия клавиш и взаимодействие с контекстным меню.
 Неинтерактивные элементы отображают информацию и не реагируют на действия пользователя, например, <p>, <li>, <tr>, <td>.
 
-### Import 
-from selenium.webdriver.common.action_chains import ActionChains
+### Импорт 
+```from selenium.webdriver.common.action_chains import ActionChains```
+
 ### Использование ActionChains для выполнения последовательности действий
-actions = ActionChains(driver) # Создаём экземпляр класса ActionChains
-actions.move_to_element(menu)  # Переместить курсор на элемент меню
-actions.click(submenu)         # Кликнуть по подменю
-actions.perform()              # Выполнить накопленные действия
+```ActionChains(webdriver)``` # Создаём экземпляр класса ActionChains\
+```.move_to_element(locator))``` # Перемещает курсор к элементу из переменной scroll_container, активируя события наведения.\
+```.scroll_by_amount(1, 5)``` # Инициирует прокрутку содержимого элемента на 1 пиксель вправо и 5 вниз. Значения можно изменять в зависимости от тестируемого интерфейса.\
+```.perform()``` # Выполняет запланированные действия в цепочке ActionChains; без этого метода команды не сработают.
