@@ -13,10 +13,10 @@ with webdriver.Chrome() as webdriver:
     # Заполняет поле текстом
     prompt.send_keys('Пользовательский текст')
     time.sleep(1)
-    # Выводит текст предупреждения (prompt) в консоль
+    # Выводит выводит содержимое title этого окна в консоль
     print(prompt.text)
     # Принимает и закрывает prompt путем нажатия кнопки "OK" (accept)
     prompt.accept()
-    # Выводит текст из элеммента c id='result' в консоль
+    # После того как кнопка "OK" была нажата, на странице в теге с id="result" отображается текст, введённый пользователем
     print(webdriver.find_element(By.ID, 'result').text)
     time.sleep(1)
