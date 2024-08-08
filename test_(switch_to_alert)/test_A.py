@@ -9,7 +9,7 @@ with webdriver.Chrome() as webdriver:
 
     # Получает alert на веб-странице и переключается на него
     alert = webdriver.switch_to.alert
-    # Выводит выводит содержимое title этого окна в консоль
+    # Выводит текст предупреждения (alert) в консоль
     print(alert.text)
     time.sleep(1)
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
