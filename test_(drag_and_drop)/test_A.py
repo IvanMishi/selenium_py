@@ -10,13 +10,16 @@ with webdriver.Chrome() as webdriver:
     webdriver.get("https://parsinger.ru/draganddrop/1/index.html")
     # Убеждается что открыта искомая страница
     time.sleep(1)
+
     # Находит элемент, который будем перетаскивать
-    element_1 = webdriver.find_element(By.ID, "draggable")
+    drag = webdriver.find_element(By.ID, "draggable")
     # Находит элемент, на который необходимо перетащить элемент element_1
-    element_2 = webdriver.find_element(By.ID, "field2")
+    drop = webdriver.find_element(By.ID, "field2")
+
     # Выполняет операцию перетаскивания element_1 на элемент element_2 с использованием ActionChains
-    ActionChains(webdriver).drag_and_drop(element_1, element_2).perform()
-    # Визуально проверяет, что элемент был перетащен 
+    ActionChains(webdriver).drag_and_drop(drag, drop).perform()
+    # Визуально убеждается, что элемент был перетащен
     time.sleep(1)
+
     # Находит элемент с результатом по его ID и выводим его текст
     print(f'Ответ: {webdriver.find_element(By.ID, 'result').text}')
