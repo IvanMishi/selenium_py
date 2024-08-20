@@ -21,8 +21,8 @@ with webdriver.Chrome() as webdriver:
     webdriver.get(link)
     # Убеждается что открыта искомая страница
     time.sleep(1)
-    # Ожидает 60 сек пока блок с id ='qQm9y1rk' появится на странице и нажимает на него
-    element = WebDriverWait(webdriver, 60).until(EC.presence_of_element_located((By.ID, "qQm9y1rk"))).click()
+    # Ожидает 60 сек пока блок с id ='qQm9y1rk' появится на странице и будет видим пользователю, нажимает на него, выводит текст из него в консоль
+    element = WebDriverWait(webdriver, 60).until(EC.visibility_of_element_located((By.ID, "qQm9y1rk"))).click()
     print(webdriver.switch_to.alert.text)
 
     # Завершение отсчета времени
