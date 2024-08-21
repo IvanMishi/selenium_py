@@ -17,12 +17,8 @@ with webdriver.Chrome() as webdriver:
 
     # Ожидает 5 сек кликабельности кнопки на странице
     button = WebDriverWait(webdriver, 5).until(EC.element_to_be_clickable((By.ID, "btn"))).click()
-<<<<<<< HEAD
+
     # Ожидает присутствия элемента, если элемент с искомым классом присутствует на странице выводит текст из элемента с id='result' в консоль
-=======
-    time.sleep(1)
-    # Ожидает появления элемента с class='BMH21YY' и выводит из него текст в качестве ответа
->>>>>>> main
     print(f'Ответ:{WebDriverWait(webdriver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'BMH21YY'))).text}')
 
     # Завершение отсчета времени
