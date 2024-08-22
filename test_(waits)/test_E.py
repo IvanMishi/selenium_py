@@ -17,12 +17,13 @@ with webdriver.Chrome() as webdriver:
 
     # Список элементов с id для поиска на веб странице
     id_list = ['xhkVEkgm', 'QCg2vOX7', '8KvuO5ja', 'CFoCZ3Ze', '8CiPCnNB', 'XuEMunrz', 'vmlzQ3gH', 'axhUiw2I', 'jolHZqD1', 'ZM6Ms3tw', '25a2X14r', 'aOSMX9tb', 'YySk7Ze3', 'QQK13iyY', 'j7kD7uIR']
-    # Ждет когда элементы с id из списка
+    # Ждет когда элементы с id из списка будут доступны и видимы
     for id in id_list:
-        WebDriverWait(webdriver, 40).until(EC.element_to_be_clickable((By.ID, id))).click()
+        WebDriverWait(webdriver, 60).until(EC.visibility_of_element_located((By.ID, id))).click()
         time.sleep(1)
 
-    print(f'Ответ: {webdriver.switch_to.alert.text}')
+    # Ожидает, что модальное окно появится, переключается на него и выводит текст в консоль
+    print(f'Ответ:{WebDriverWait(webdriver, 60).until(EC.alert_is_present()).text}')
     webdriver.switch_to.alert.accept()
 
     # Завершение отсчета времени
