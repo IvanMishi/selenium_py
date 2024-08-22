@@ -26,3 +26,4 @@ with webdriver.Chrome() as webdriver:
     print(f"Время выполнения: {end - start} секунд.")
 
     # Браузер закрывается автоматически после завершения блока `with`
+    

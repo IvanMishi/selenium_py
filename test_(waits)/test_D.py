@@ -13,7 +13,6 @@ start = time.time()
 with webdriver.Chrome() as webdriver:
     # Переходит по ссылке
     webdriver.get(link)
-
     time.sleep(1) # Убеждается что открыта искомая страница
 
     # Ожидает  элемент с искомым ID и нажимает, если элемент присутствует на странице
