@@ -15,9 +15,12 @@ with webdriver.Chrome() as webdriver:
     webdriver.get(link)
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    # Ожидает присутствия элемента и его видимости, если элемент с искомым классом присутствует на странице и видим пользователю, нажимает на него выводит, переключается на модальное окно и выводит текст из него  в консоль
-    element = WebDriverWait(webdriver, 60).until(EC.visibility_of_element_located((By.ID, "qQm9y1rk"))).click()
-    print(webdriver.switch_to.alert.text)
+    # Ожидает  элемент с искомым ID и нажимает, если элемент присутствует на странице
+    element = WebDriverWait(webdriver, 60).until(EC.presence_of_element_located((By.ID, "qQm9y1rk"))).click()
+
+    # Ожидает, что модальное окно появится, переключается на него и выводит текст в консоль
+    print(f'Ответ:{WebDriverWait(webdriver, 60).until(EC.alert_is_present()).text}')
+    webdriver.switch_to.alert.accept()
 
     # Завершение отсчета времени
     end = time.time()

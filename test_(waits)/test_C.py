@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC  # Модуль
 
 
 # Ссылка на страницу
-link = 'https://parsinger.ru/expectations/6/index.html'
+link = 'https://parsinger.ru/selenium/5.9/2/index.html'
 # Измеряет время выполнения
 start = time.time()
 
@@ -15,10 +15,15 @@ with webdriver.Chrome() as webdriver:
     webdriver.get(link)
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    # Ожидает 5 сек кликабельности кнопки на странице
-    button = WebDriverWait(webdriver, 5).until(EC.element_to_be_clickable((By.ID, "btn"))).click()
-    # Ожидает присутствия элемента, если элемент с искомым классом присутствует на странице выводит текст из элемента с id='result' в консоль
-    print(f'Ответ:{WebDriverWait(webdriver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'BMH21YY'))).text}')
+    # Ожидает присутствия элемента с искомым ID и нажимает на него, если этот элемент видим пользователю
+    if WebDriverWait(webdriver, 60).until(EC.presence_of_element_located((By.ID, "qQm9y1rk"))):
+        element_is_presence = webdriver.find_element(By.ID, "qQm9y1rk")
+        if WebDriverWait(webdriver, 60).until(EC.visibility_of(element_is_presence)):
+            element_is_presence_and_visibility = element_is_presence
+            element_is_presence_and_visibility.click()
+
+    # Ожидает, что модальное окно появится, переключается на него и выводит текст в консоль
+    print(f'Ответ:{WebDriverWait(webdriver, 60).until(EC.alert_is_present()).text}')
 
     # Завершение отсчета времени
     end = time.time()
