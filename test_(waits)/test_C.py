@@ -15,9 +15,10 @@ with webdriver.Chrome() as webdriver:
     webdriver.get(link)
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    # Ожидает присутствия элемента с искомым ID и нажимает на него, если этот элемент видим пользователю
+    # Ожидает присутствия элемента с искомым ID 
     if WebDriverWait(webdriver, 60).until(EC.presence_of_element_located((By.ID, "qQm9y1rk"))):
         element_is_presence = webdriver.find_element(By.ID, "qQm9y1rk")
+        # Ожидает, что этот элемент видим пользователю и нажимает на него
         if WebDriverWait(webdriver, 60).until(EC.visibility_of(element_is_presence)):
             element_is_presence_and_visibility = element_is_presence
             element_is_presence_and_visibility.click()

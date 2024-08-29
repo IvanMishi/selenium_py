@@ -25,9 +25,9 @@ with webdriver.Chrome() as webdriver:
 
         # Проходит по списку кнопок
         for button in button_list:
-            if button not in catch_buttons: # Если кнопка еще не нажата
+            if button not in catch_buttons and WebDriverWait(webdriver, 5).until(EC.element_to_be_clickable((button))): # Если кнопка еще не была нажата и кнопка кликабельна
                 button.click()  # Нажимает на кнопку
-                # Закрываем рекламное окно, если оно существует
+                # Закрывает рекламное окно, если оно появлется
                 try:
                     close_ad = WebDriverWait(webdriver, 10).until(
                         EC.element_to_be_clickable((By.ID, 'close_ad'))).click()
@@ -39,6 +39,7 @@ with webdriver.Chrome() as webdriver:
                 WebDriverWait(webdriver, 10).until(lambda d: button.text != "") # Лямбда-функция, которая проверяет, что текст кнопки (button.text) не является пустой строкой.
                 # Получает текст кнопки
                 text = button.text
+                # Сохраняет текст из каждой кнопки в список
                 answer.append(text)
                 # Добавляет кнопку в уже нажатые
                 catch_buttons.append(button)
