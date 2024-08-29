@@ -16,14 +16,32 @@ with webdriver.Chrome() as webdriver:
 
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    # Ожидает
-    element_ad_close = webdriver.find_element(By.CLASS_NAME, 'close').click()
-    element_ad = webdriver.find_element(By.ID, 'ad')
-    # убеждается что элемент больше не  видим
-    if WebDriverWait(webdriver, 10).until(EC.invisibility_of_element_located((By.ID, 'ad'))):
-        button = webdriver.find_element(By.TAG_NAME, 'button').click()
-        print(f'Ответ: {webdriver.find_element(By.ID, 'message').text}')
 
+    try: # Ожидает появления рекламного окна
+        ad_element = WebDriverWait(webdriver, 10).until(EC.presence_of_element_located((By.ID, 'ad')))
+        if ad_element: # Если рекламное окно присутствует на странице
+            try:
+                # Ожидаем кликабельности элемента с ID 'close' в течение 10 секунд, чтоб закрыть рекламное окно
+                close_element = WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'close')))
+                if close_element:
+                    # Кликаем по элементу с классом 'close'
+                    close_element.click()
+            except TimeoutException:
+                print("Элемент 'close' не найден или не кликабелен в течение заданного времени ожидания.")
+
+        # Убеждается что рекламное окно более не видимо пользователю
+        if WebDriverWait(webdriver, 10).until(EC.invisibility_of_element_located((By.ID, 'ad'))):
+
+            button = WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable((By.TAG_NAME, 'button')))
+            if button:
+                button.click()
+
+    except TimeoutException:
+        print("Рекламное окно с id='ad' не появилось на странице  в течение заданного времени ожидания.")
+    #Выводит текст из элемента в консоль, если он станет ненулевым (не пустым).
+    if WebDriverWait(webdriver, 10).until(lambda d: d.find_element(By.ID, 'message').text != ""):
+        print(webdriver.find_element(By.ID, 'message').text)
+        
     # Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
