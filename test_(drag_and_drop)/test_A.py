@@ -1,15 +1,17 @@
-# Импортирует необходимые библиотеки для работы с Selenium и ожиданиями
-import time
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+from selenium.webdriver.common.action_chains import ActionChains # Импортирует класс ActionChains для выполнения сложных пользовательских действий (клик, перемещение мыши, перетаскивание).
 
-# Используемт контекстный менеджер для автоматического закрытия драйвера после выполнения действий
+# Ссылка на страницу
+link = 'https://parsinger.ru/draganddrop/1/index.html'
+# Измеряет время выполнения
+start = time.time()
+
 with webdriver.Chrome() as webdriver:
-    # Открывает веб-страницу по указанному URL
-    webdriver.get("https://parsinger.ru/draganddrop/1/index.html")
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
+    # Переходит по ссылке
+    webdriver.get(link)
+    time.sleep(1) # Убеждается что открыта искомая страница
 
     # Находит элемент, который будем перетаскивать
     drag = webdriver.find_element(By.ID, "draggable")
@@ -23,3 +25,9 @@ with webdriver.Chrome() as webdriver:
 
     # Находит элемент с результатом по его ID и выводим его текст
     print(f'Ответ: {webdriver.find_element(By.ID, 'result').text}')
+
+    # Завершение отсчета времени
+    end = time.time()
+    print(f"Время выполнения: {end - start} секунд.")
+
+    # Браузер закрывается автоматически после завершения блока `with`
