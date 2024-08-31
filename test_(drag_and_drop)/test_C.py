@@ -10,12 +10,11 @@ link = 'https://parsinger.ru/selenium/5.10/3/index.html'
 # Измеряет время выполнения
 start = time.time()
 
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
-    webdriver.get(link)
+with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link) # Переходит по ссылке
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    # Находит элементы: которые будет перетаскивать и куда будет перетаскивать
+    # Находит элементы для перемещения и броска в область
     drag_elements = webdriver.find_elements(By.CLASS_NAME, 'draganddrop')
     drop_elements = webdriver.find_elements(By.CLASS_NAME, 'draganddrop_end')
 
@@ -25,13 +24,12 @@ with webdriver.Chrome() as webdriver:
                 drop.value_of_css_property('border-color')).rgb:
             ActionChains(webdriver).click_and_hold(drag).move_to_element(drop).release().perform()
             time.sleep(.1)
+    time.sleep(1) # Визуально убеждается, что элемент был перемещен
 
-    time.sleep(1)
     # Находит элемент с результатом по его ID и выводит его текст
     print(f'Ответ: {webdriver.find_element(By.ID, 'message').text}')
 
     # Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
-
     # Браузер закрывается автоматически после завершения блока `with`

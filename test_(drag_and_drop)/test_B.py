@@ -8,15 +8,14 @@ link = 'https://parsinger.ru/draganddrop/3/index.html'
 # Измеряет время выполнения
 start = time.time()
 
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
+with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
     webdriver.get(link)
     time.sleep(1) # Убеждается что открыта искомая страница
 
-    ## Находит элемент, для перемещения
+    # Находит элемент для удержания и перемещения по контрольным точкам
     drag_element = webdriver.find_element(By.ID, "block1")
-    # Находит элемент, на который перемесщает
     drop_element_points = webdriver.find_elements(By.CLASS_NAME, "controlPoint")
+
     # Выполняет операцию захвата и удержания элемента
     ActionChains(webdriver).click_and_hold(drag_element).perform()
     # Выполняет операцию перемещения удерживаемого элемента в цикле по контрольным точкам
@@ -24,14 +23,14 @@ with webdriver.Chrome() as webdriver:
         ActionChains(webdriver).move_to_element(point).perform()
     # Выполняет оерацию отпускания удерживаемого элемента после перемещения по контролным точкам
     ActionChains(webdriver).release(drag_element).perform()
-    # Визуально убеждается, что элемент был перемещен
-    time.sleep(1)
-    # Находит элемент с результатом по его ID и выводим его текст
-    print(f'Ответ: {webdriver.find_element(By.ID, 'message').text}')
 
+    
+    time.sleep(1) # Визуально убеждается, что элемент был перемещен
+    # Находит элемент с результатом по его ID и выводит его текст
+    print(f'Ответ: {webdriver.find_element(By.ID, 'message').text}')
 
     # Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
-
     # Браузер закрывается автоматически после завершения блока `with`
+ 
