@@ -15,11 +15,11 @@ with webdriver.Chrome() as webdriver: # Создаёт экземпляр дра
     time.sleep(1) # Убеждается что открыта искомая страница.
 
 
-    # Находит элементы для перемещения и броска в область.
+    # Находит элементы перемещения элемента из одной позиции в другую.
     drag_elements = webdriver.find_elements(By.CLASS_NAME, "piece")
     drop_elements = webdriver.find_elements(By.CLASS_NAME, "range")
 
-    # Выполняет операции перемещения элементов на заданное застояние.
+    # Выполняет операции перемещения элементов на заданное растояние.
     for drag, drop in zip(drag_elements, drop_elements):
         # Находит элементы c атрибутом='p' получает из них текс
         distance_text = drop.find_element(By.TAG_NAME, 'p').text
