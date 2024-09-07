@@ -2,29 +2,26 @@ import time  # Модуль для работы с функцией ожидан
 from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
 from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 from selenium.webdriver.common.action_chains import ActionChains # Импортирует класс ActionChains для выполнения сложных пользовательских действий (клик, перемещение мыши, перетаскивание).
-from selenium.webdriver.support.color import Color # Импортирует класс Color для работы с цветами в веб-элементах.
 
 
-# Ссылка на страницу
-link = 'https://parsinger.ru/selenium/5.10/3/index.html'
-# Измеряет время выполнения
+# Ссылка на страницу.
+link = 'https://parsinger.ru/draganddrop/2/index.html'
+# Измеряет время выполнения.
 start = time.time()
 
+
 with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
-    webdriver.get(link) # Переходит по ссылке
-    time.sleep(1) # Убеждается что открыта искомая страница
+    webdriver.get(link) # Переходит по ссылке.
+    time.sleep(1) # Убеждается что открыта искомая страница.
 
     # Находит элементы перемещения элемента из одной позиции в другую.
-    drag_elements = webdriver.find_elements(By.CLASS_NAME, 'draganddrop')
-    drop_elements = webdriver.find_elements(By.CLASS_NAME, 'draganddrop_end')
+    drag_box = webdriver.find_element(By.ID, "draggable")
+    drop_boxs = webdriver.find_elements(By.CLASS_NAME, "box")
 
-    # Действия с перетаскиванием элементов
-    for drag, drop in zip(drag_elements, drop_elements):
-        if Color.from_string(drag.value_of_css_property('background-color')).rgb == Color.from_string(
-                drop.value_of_css_property('border-color')).rgb:
-            ActionChains(webdriver).click_and_hold(drag).move_to_element(drop).release().perform()
-            time.sleep(.1)
-    time.sleep(1) # Визуально убеждается, что элемент был перемещен
+    # Выполняет операции перемещения элементов  по цвету.
+    for drop in drop_boxs:
+        ActionChains(webdriver).drag_and_drop(drag_box, drop).perform()
+    time.sleep(1) # Визуально убеждается, что элементы были перемещены
 
     # Находит элемент с результатом по его ID и выводит его текст
     print(f'Ответ: {webdriver.find_element(By.ID, 'message').text}')
