@@ -27,7 +27,10 @@ python3 test_(drag_and_drop)/test_A.py >> test_(drag_and_drop)/output.txt
 - [x] Пермещает красный бокс на серый
 
 В программе использует: 
-```.``` \
+```ActionChains(webdriver).drag_and_drop(drag_element, drop_element).perform()``` \
+Операция перетаскивания элемента из одной позиции в другую\
+drag_element - элемент, который нужно перетаскивать.\
+drop_element -  целевой элемент, куда будем перемещать иcходный элемент.\
 
 
 ## Тестовые данные test_B
@@ -37,9 +40,12 @@ python3 test_(drag_and_drop)/test_A.py >> test_(drag_and_drop)/output.txt
 - [x] Перемеещает синий бокс через каждую контрольную точку
 
 В программе использует: 
-```.``` \
-
-
+```ActionChains(webdriver).click_and_hold(drag_element).perform()``` \
+Операция захвата и удержания элемента. \
+```ActionChains(webdriver).move_to_element(point).perform()``` \
+Операция для перемещения указателя мыши c удерживаемым элементом к указанному элементу веб-страницы. \
+```ActionChains(webdriver).release(drag_element).perform()```
+Операция отпускания удерживаемого элемента после перемещения по элементам веб-страницы. \
 
 ## Тестовые данные test_C
 - [x] Незарегестированный пользователь переходит по ссылке
