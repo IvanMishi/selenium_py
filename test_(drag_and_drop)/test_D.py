@@ -18,7 +18,7 @@ with webdriver.Chrome() as webdriver: # Создаёт экземпляр дра
     drag_box = webdriver.find_element(By.ID, "draggable")
     drop_boxs = webdriver.find_elements(By.CLASS_NAME, "box")
 
-    # Выполняет операции перемещения элементов  по цвету.
+    # Выполняет операции перемещения элемента по блокам.
     for drop in drop_boxs:
         ActionChains(webdriver).drag_and_drop(drag_box, drop).perform()
     time.sleep(1) # Визуально убеждается, что элементы были перемещены
