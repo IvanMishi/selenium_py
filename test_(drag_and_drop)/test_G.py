@@ -19,9 +19,9 @@ with webdriver.Chrome() as webdriver: # Создаёт экземпляр дра
     drag_elements = webdriver.find_elements(By.CLASS_NAME, "piece")
     drop_elements = webdriver.find_elements(By.CLASS_NAME, "range")
 
-    # Выполняет операции перемещения элементов на заданное растояние.
+    # Выполняет операции перемещения элементов на заданное расстояние.
     for drag, drop in zip(drag_elements, drop_elements):
-        # Находит элементы c атрибутом='p' получает из них текс
+        # Находит элементы c атрибутом='p' получает из них текст для информации  о расстоянии перемещения.
         distance_text = drop.find_element(By.TAG_NAME, 'p').text
         # Избавляется от символов и преобразует текст в цисло
         distance = int(distance_text.split(': ')[1].replace('px', ''))
