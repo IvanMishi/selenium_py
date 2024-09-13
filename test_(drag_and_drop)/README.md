@@ -94,10 +94,10 @@ element — это объект элемента для перемещения -
 Модуль Color из selenium.webdriver.support.color используется для работы с цветами в Selenium. \
 Он конвертирует цветовые значения между форматами Hex (например, #FFFFFF), RGBA (например, rgba(255, 255, 255, 1)) и HSL. \
 Основная задача модуля — упрощение работы с цветами в автоматизированном тестировании веб-приложений, позволяя получать и преобразовывать цвета для последующих проверок.\
-```if Color.from_string(drag.value_of_css_property('background-color')).rgb == Color.from_string(
-                drop.value_of_css_property('border-color')).rgb:``` 
-Проверяет, совпадают ли цвета перемещаемого и целевого элемента, после преобразования в цаетовое значение rgb, затем можно выполнить операцию перемещения.
-```ActionChains(webdriver).click_and_hold(drag).move_to_element(drop).release().perform()```
+
+```if Color.from_string(drag.value_of_css_property('background-color')).rgb == Color.from_string(```
+                ```drop.value_of_css_property('border-color')).rgb:``` \
+Проверяет, совпадают ли цвета перемещаемого и целевого элемента, после преобразования в цветовое значение rgb, затем можно выполнить операцию перемещения.
 
 
 ## Тестовые данные test_G
