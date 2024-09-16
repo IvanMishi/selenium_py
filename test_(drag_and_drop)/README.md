@@ -1,4 +1,6 @@
 # Перемещение элементов (Drag and Drop)
+Это перемещение элемента из одной позиции в другую, полезное для автоматизации действий, например, загрузки файлов или упорядочения элементов.
+Selenium реализует drag and drop через класс ActionChains, предоставляя методы drag_and_drop(), drag_and_drop_by_offset() и click_and_hold() для выполнения перетаскивания.
 
 ## Инженер по тестированию переходит в директорию, предназначенную для хранения файлов с тестами
 ```
@@ -12,11 +14,11 @@ source selenium_env/bin/activate
 ```sh
 python3 test_(drag_and_drop)/test_A.py
 ```
-## Для вывода результата в отдельный файл зпускает командой 
+## Для вывода результата в отдельный файл запускает команду
 ```sh
 python3 test_(drag_and_drop)/test_A.py >> test_(drag_and_drop)/output.txt
 ```
-Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+Где test_A.py — скрипт с тестом, а output.txt — файл, в который будет записан вывод теста.
 
 
 
@@ -55,7 +57,8 @@ element — это объект элемента для перемещения -
 ```webdriver.get_window_size()["width"]``` — возвращает текущую ширину окна браузера.\
 ```ActionChains(webdriver).drag_and_drop_by_offset(element, (```
         ```webdriver.get_window_size()["width"] - (drop_area.size['width'])), 0).perform()```\
-Это ширина области, куда перемещает элемент\
+
+Это ширина области, куда перемещает элемент.\
 ```drop_area.size['width']``` 
 Выражение вычисляет горизонтальное смещение, на которое нужно переместить элемент, сдвигая его к правому краю окна.\
 ```(webdriver.get_window_size()["width"] - (drop_area.size['width']))```
@@ -68,7 +71,7 @@ element — это объект элемента для перемещения -
 #### В программе использует: 
 Операция перемещения элемента из одной позиции в другие.\
 ```for drop in drop_boxs:```
-        ```ActionChains(webdriver).drag_and_drop(drag_box, drop).perform()```
+```        ActionChains(webdriver).drag_and_drop(drag_box, drop).perform()```
 
 
 ## Тестовые данные test_E
@@ -95,8 +98,7 @@ element — это объект элемента для перемещения -
 Основная задача модуля — упрощение работы с цветами в автоматизированном тестировании веб-приложений, позволяя получать и преобразовывать цвета для последующих проверок.\
 Проверяет, совпадают ли цвета перемещаемого и целевого элемента, после преобразования в цветовое значение rgb, затем можно выполнить операцию перемещения.\
 ```if Color.from_string(drag.value_of_css_property('background-color')).rgb == Color.from_string(```
-                ```drop.value_of_css_property('border-color')).rgb:``` 
-
+```        drop.value_of_css_property('border-color')).rgb:``` 
 
 
 ## Тестовые данные test_G
