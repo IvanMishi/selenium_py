@@ -7,11 +7,11 @@ with webdriver.Chrome() as webdriver:
     webdriver.find_element(By.ID, 'alert').click()
     time.sleep(1)
 
-    # Получает alert на веб-странице и переключается на него
+    # Переключается на alert и выводит его текст
     alert = webdriver.switch_to.alert
-    # Выводит текст предупреждения (alert) в консоль
     print(alert.text)
+
     time.sleep(1)
-    # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
+    # Закрывает alert кнопкой "OK"
     alert.accept()
     time.sleep(1)
