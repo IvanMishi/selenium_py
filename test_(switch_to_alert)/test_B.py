@@ -1,22 +1,42 @@
-import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
-with webdriver.Chrome() as webdriver:
-    webdriver.get('http://parsinger.ru/blank/modal/1/index.html')
-    # Нажимает на кнопку для вызова модального окна Prompt
+
+# Ссылка на страницу.
+link = 'http://parsinger.ru/blank/modal/1/index.html'
+# Измеряет время выполнения.
+start = time.time()
+
+
+with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link) # Переходит по ссылке.
+    time.sleep(1) # Убеждается что открыта искомая страница.
+
+    # Находит кнопку для вызова Prompt и нажимает на нее.
     webdriver.find_element(By.ID, 'prompt').click()
-    time.sleep(1)
-
-    # Получает prompt на веб-странице и переключается на него
+    # Переключается на Prompt.
     prompt = webdriver.switch_to.alert
-    # Заполняет поле текстом
+    time.sleep(1)  # Визуально убеждается, что переключился на Prompt.
+    # Заполняет поле текстом.
     prompt.send_keys('Пользовательский текст')
-    time.sleep(1)
-    # Выводит текст предупреждения (prompt) в консоль
+    # Выводит текст предупреждения Prompt в консоль.
     print(prompt.text)
-    # Принимает и закрывает prompt путем нажатия кнопки "OK" (accept)
+    # Закрывает Prompt кнопкой "OK"
     prompt.accept()
-    # Выводит текст из элеммента c id='result' в консоль
+    time.sleep(1) # Визуально убеждается, что Prompt закрылся
+    # Находит элемент с ID 'result', который содержит текст, введенный пользователем в prompt, и выводит его в консоль.
     print(webdriver.find_element(By.ID, 'result').text)
-    time.sleep(1)
+
+    # Завершение отсчета времени
+    end = time.time()
+    print(f"Время выполнения: {end - start} секунд.")
+    # Браузер закрывается автоматически после завершения блока `with`
+
+
+
+
+
+
+
+
