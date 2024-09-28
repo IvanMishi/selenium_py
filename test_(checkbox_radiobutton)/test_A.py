@@ -1,46 +1,34 @@
-# Импортирует необходимые библиотеки
-# Импортирует модуль time для работы с ожиданием
-import time
-# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver
-# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-# Импортирует модуль math, который предоставляет математические функции
-import math
-# Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
-import re
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+import math # Модуль для выполнения математических расчетов
+import re # Модуль для работы с регулярными выражениями
 
-# Функция с мат выражением для заполнения поля ввода рассчитывает логарифм натуральный от модуля произведения 12 и синуса от целочисленного значения x. 
+# Ссылка на страницу.
+link = 'http://suninjuly.github.io/get_attribute.html'
+# Измеряет время выполнения.
+start = time.time()
+
+# Функция с математическим выражением вычисляет натуральный логарифм модуля произведения 12 и синуса целочисленного значения x.
 def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
-# Ссылка на страницу
-link = "http://suninjuly.github.io/get_attribute.html"
-# Измеряет время выполнения определенного участка кода.
-start = time.time()
+with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link) # Переходит по ссылке.
+    time.sleep(1) # Убеждается что открыта искомая страница.
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-# Открывает браузер Chrome
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
-    webdriver.get(link)
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
+    # Находит элемент с идентификатором 'treasure', извлекает его значение из атрибута 'valuex' и вычисляет его с помощью функции calc.
+    x= calc(webdriver.find_element(By.CSS_SELECTOR, "[id='treasure']").get_attribute("valuex"))
 
- 
-    x_element = webdriver.find_element(By.CSS_SELECTOR, "[id='treasure']")
-    # извлекает текстовое содержимое найденного элемента
-    x = x_element.get_attribute("valuex")
-    y = calc(x)
-    
-    # Заполняет поле ввода текста на веб-странице данными из переменной y
-    input_area = webdriver.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(y)
+    # Заполняет поле ввода текста на веб-странице данными из переменной x
+    input_area = webdriver.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(x)
     # Отмечает чекбокс на веб-странице
-    checkbox = webdriver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
+    checkbox_button = webdriver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']").click()
     # Выбирает радиокнопку на веб-странице
     radio_button = webdriver.find_element(By.CSS_SELECTOR, "[id='robotsRule']").click()
     # Нажимает кнопку отправки формы на веб-странице
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
+    time.sleep(1)  # Визуально убеждается, что все действия выполнены
 
     # Получает alert на веб-странице
     alert = webdriver.switch_to.alert
@@ -51,9 +39,8 @@ with webdriver.Chrome() as webdriver:
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
 
+    
     # Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
-
-    # Браузер закроется автоматически после завершения блока `with`
-    # Не забывает оставить пустую строку в конце файла
+    # Браузер закрывается автоматически после завершения блока `with`
