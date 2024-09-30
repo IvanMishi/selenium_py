@@ -1,47 +1,33 @@
-Откройте веб-сайт с помощью Selenium.
-Активация Чек-боксов: Найдите все чек-боксы на странице и установите их в положение checked с помощью .click().
-Открывание Секрета: Как только все чек-боксы будут активированы, нажмите на кнопку.
-Доступ к Секретным Данным: Скопируйте число, которое появится в теге <p id="result">Result</p>.
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
 
+# Ссылка на страницу.
+link = 'http://parsinger.ru/selenium/4/4.html'
+# Измеряет время выполнения.
+start = time.time()
 
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
 
-# ссылка на страницу 
-link = "http://parsinger.ru/selenium/4/4.html"
+with webdriver.Chrome() as webdriver: # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link) # Переходит по ссылке.
+    time.sleep(1) # Убеждается что открыта искомая страница.
 
-# если в коде внутри блока try произойдет какая-то ошибка, то код внутри блока finally выполнится в любом случае.
-try:
-# открывает браузер Chrome
-    browser = webdriver.Chrome()
-# переходит по ссылке
-    browser.get(link)
-    
-# Поиск внутри списка элементов: находит все элементы на странице, которые являются элементами содержащими текст c помощью метода find_elements()
-    checkboxs = browser.find_elements(By.CSS_SELECTOR, "[type='checkbox']")
-
+    # Находит все элементы чекбокс на веб странице
+    checkboxs = browser.find_elements(By.CSS_SELECTOR, "[type='checkbox']"
 
     # Перебирает каждый найденный элемент в списке checkboxs
     for element in checkboxs:
         element.click()
 
-    button = browser.find_element(By.CSS_SELECTOR, "[type='button']").click()
+    button = webdriver.find_element(By.CSS_SELECTOR, "[type='button']").click()
     time.sleep(1)
-    result = browser.find_element(By.CSS_SELECTOR, "[id='result']").text
-
-# код внутри блока finally будет выполнен в любом случае
-finally:
-    # успевает скопировать код за 3 секунд
-    time.sleep(3)
-    # закрывает браузер
-    browser.quit()
-    #Выводит результат суммирования данных из искомых элементов
+    result = webdriver.find_element(By.CSS_SELECTOR, "[id='result']").text
+    # Выводит результат суммирования данных из искомых элементов
     print("Ответ найден:", result)
 
-# оставляет пустую строку в конце файла
+
+    # Завершение отсчета времени
+    end = time.time()
+    print(f"Время выполнения: {end - start} секунд.")
+    # Браузер закрывается автоматически после завершения блока `with`
