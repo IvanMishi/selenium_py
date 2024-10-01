@@ -14,18 +14,18 @@ with webdriver.Chrome() as webdriver: # Создаёт экземпляр дра
     time.sleep(1) # Убеждается что открыта искомая страница.
 
     # Находит все элементы чекбокс на веб странице
-    checkboxs = browser.find_elements(By.CSS_SELECTOR, "[type='checkbox']"
+    checkboxs = webdriver.find_elements(By.CSS_SELECTOR, "[type='checkbox']")
 
     # Перебирает каждый найденный элемент в списке checkboxs
     for element in checkboxs:
-        element.click()
+        element.click() # Отмечает каждый найденый чекбокс
 
-    button = webdriver.find_element(By.CSS_SELECTOR, "[type='button']").click()
-    time.sleep(1)
-    result = webdriver.find_element(By.CSS_SELECTOR, "[id='result']").text
-    # Выводит результат суммирования данных из искомых элементов
-    print("Ответ найден:", result)
+    # Нажимает кнопку отправки формы на веб-странице
+    button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='button']").click()
+    time.sleep(1)  # Визуально убеждается, что все действия выполнены.
 
+    # Находит элемент с результатом по его ID и выводит его текст
+    print(f'Ответ: {webdriver.find_element(By.ID, 'result').text}')
 
     # Завершение отсчета времени
     end = time.time()
