@@ -1,40 +1,27 @@
-# Импортирует необходимые библиотеки
-# Импортирует модуль time для работы с ожиданием
-import time
-# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver
-# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-# Импортирует модуль math, который предоставляет математические функции
-import math
-# Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
-import re
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+import re # Модуль для работы с регулярными выражениями
 
-
-# Ссылка на страницу 
-link = "http://suninjuly.github.io/huge_form.html"
-# Измеряет время выполнения определенного участка кода.
+# Ссылка на страницу.
+link = 'http://suninjuly.github.io/huge_form.html'
+# Измеряет время выполнения.
 start = time.time()
 
-# Блок try используется для выполнения кода, который может вызвать исключение
-try:
-    # Открывает браузер Chrome
-    webdriver = webdriver.Chrome()
-    # Переходит по ссылке
-    webdriver.get(link)
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
-    
-    # Поиск внутри списка элементов: находит все элементы на странице, которые являются элементами ввода (input) c помощью метода find_elements()
+
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
+
+    # Поиск внутри списка элементов: находит все элементы ввода (input) на странице с помощью метода find_elements().
     input_elements = webdriver.find_elements(By.TAG_NAME, "input")
     # Пребирает каждый найденный элемент в списке input_elements
     for element in input_elements:
-    # Вводит текст "Мой ответ" в каждый элемент ввода
-        element.send_keys("Ответ")
-        
+        # Вводит текст "Мой ответ" в каждый элемент ввода
+        element.send_keys("Пользовательский текст")
+
     # Находит и нажимает кнопку Submit
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "button.btn").click()
-
 
     # Получает alert на веб-странице
     alert = webdriver.switch_to.alert
@@ -45,14 +32,7 @@ try:
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
 
-
-# Код внутри блока finally будет выполнен в любом случае
-finally:
-    # Завершение отсчета времени
-    end = time.time()
-    print(f"Время выполнения: {end - start} секунд.")
-
-    # Закрывает браузер
-    webdriver.quit()
-
-# Не забывает оставить пустую строку в конце файла
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
+# Браузер закрывается автоматически после завершения блока `with`
