@@ -1,45 +1,32 @@
-# Импортирует необходимые библиотеки
-# Импортирует модуль Select который позволяет управлять выпадающими списками на веб-страницах
-from selenium.webdriver.support.ui import Select
-# Импортирует модуль time для работы с ожиданием
-import time
-# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver
-# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
-
-
-# Ссылка на страницу
-link = "http://parsinger.ru/selenium/6/6.html"
-
-# Измеряет время выполнения определенного участка кода.
+# Ссылка на страницу.
+link = 'http://parsinger.ru/selenium/6/6.html'
+# Измеряет время выполнения.
 start = time.time()
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-# Открывает браузер Chrome
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
-    webdriver.get(link)
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
 
-    # Находит элемент с математическим выражением и сохраняет текст из этого элемента в переменную x
-    x = webdriver.find_element(By.CSS_SELECTOR, "[id='text_box']").text  
-    # Выбирает в выпадающем списке на странице опцию с текстовым значением, вычисленным из переменной x с помощью eval()
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
+
+    # Находит элемент с математическим выражением и сохраняет текст из этого элемента в переменную x.
+    x = webdriver.find_element(By.CSS_SELECTOR, "[id='text_box']").text
+    # Выбирает из выпадающего списка опцию, вычисленную из переменной x с помощью eval().
     dropdown_element = webdriver.find_element(By.TAG_NAME, "select").send_keys(str(eval(x)))
+    time.sleep(1)  # Визуально убеждается, что в выпадающем списке была выбрана опция
 
-    # Нажимает кнопку отправки формы на веб-странице
+    # Нажимает кнопку отправки формы на веб-странице.
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='button']").click()
 
-    # Cохраняет текст из элемента, появившегося на странице в переменную result
+    # Сохраняет текст элемента на странице в переменную result.
     result = webdriver.find_element(By.CSS_SELECTOR, "[id='result']").text
-    # Dыводит значение переменной actual_result в консоль
+    # Выводит значение переменной result в консоль в качестве ответа
     print('Ответ', result)
 
-    # Завершение отсчета времени
-    end = time.time()
-    print(f"Время выполнения: {end - start} секунд.")
-
-    # Браузер закроется автоматически после завершения блока `with`
-    # Не забывает оставить пустую строку в конце файла
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
+# Браузер закрывается автоматически после завершения блока `with`
