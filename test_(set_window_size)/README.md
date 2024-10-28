@@ -33,3 +33,4 @@ python3 test_(set_window_size)/test_A.py >> test_(set_window_size)/output.txt
  #### В программе использует:
 
 ## Тестовые данные test_C
+ #### В программе использует:
