@@ -20,6 +20,7 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 
 С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.\
 Метод .get_cookies() возвращает список словарей, содержащих информацию, включая время истечения срока жизни cookie ('expiry': 1685518907).\
+```
 [{'domain': '.ya.ru',
   'expiry': 1685518907,
   'httpOnly': False,
@@ -37,10 +38,10 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
   'sameSite': 'None',
   'secure': True,
   'value': '239'}]
-
+```
 ```.get_cookie(name_cookie)```
 находит и возвращает cookie по его имени.\
-```for cookie in cookies:```
+```for cookie in cookies:```\
 ```        print(cookie['name'])``` # или cookie['value'] чтобы получить их значение
 
 Пример кода для извлечения конкретного значения из cookie.\
