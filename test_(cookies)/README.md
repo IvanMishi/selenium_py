@@ -18,9 +18,12 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 ```
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
+
 ### С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.\
 Метод cookies = webdriver.get_cookies() возвращает список словарей, содержащих информацию, включая время истечения срока жизни cookie ('expiry': 1685518907).\
 ```pprint(cookies)```
+
+```
 [{'domain': '.ya.ru',
   'expiry': 1685518907,
   'httpOnly': False,
@@ -29,10 +32,10 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
   'sameSite': 'None',
   'secure': True,
   'value': '1653982908'}]
-
+```
 ```.get_cookie(name_cookie)```
 находит и возвращает cookie по его имени.\
-```for cookie in cookies:```
+```for cookie in cookies:```\
 ```        print(cookie['name'])``` # или cookie['value'] чтобы получить их значение
 
 Пример кода для извлечения конкретного значения из cookie.\
@@ -47,3 +50,4 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 #### В программе использует: 
 ```webdriver.get_cookies()```
 ```if 'secret_cookie_' in cookie['name']:```
+
