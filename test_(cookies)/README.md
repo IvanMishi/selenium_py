@@ -18,8 +18,11 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 ```
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
-С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.\
-Метод .get_cookies() возвращает список словарей, содержащих информацию, включая время истечения срока жизни cookie ('expiry': 1685518907).\
+
+### С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.\
+Метод cookies = webdriver.get_cookies() возвращает список словарей, содержащих информацию, включая время истечения срока жизни cookie ('expiry': 1685518907).\
+```pprint(cookies)```
+
 ```
 [{'domain': '.ya.ru',
   'expiry': 1685518907,
@@ -28,16 +31,7 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
   'path': '/',
   'sameSite': 'None',
   'secure': True,
-  'value': '1653982908'},
-  ...
-   {'domain': '.ya.ru',
-  'expiry': 1656574906,
-  'httpOnly': False,
-  'name': 'yandex_gid',
-  'path': '/',
-  'sameSite': 'None',
-  'secure': True,
-  'value': '239'}]
+  'value': '1653982908'}]
 ```
 ```.get_cookie(name_cookie)```
 находит и возвращает cookie по его имени.\
@@ -48,5 +42,12 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 ```print(webdriver.get_cookie('_ym_uid')['expiry'])```
 
 ## Тестовые данные test_A
+- [x] Незарегестированный пользователь переходит по ссылке.
+- [x] Получает все куки и сохраняет в переменную.
+- [x] Извлекает значения куки с именами, содержащими 'secret_cookie_'..
+- [x] Преобразует полученные значения в числа, суммирует их и выводит общую сумму в консоль.
 
 #### В программе использует: 
+```webdriver.get_cookies()```
+```if 'secret_cookie_' in cookie['name']:```
+
