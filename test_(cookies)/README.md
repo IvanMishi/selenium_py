@@ -19,9 +19,9 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 
-### С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.\
+### С помощью метода ```.get_cookies()``` можно получить как имена куков, так и их значения.
 Метод cookies = webdriver.get_cookies() возвращает список словарей, содержащих информацию, включая время истечения срока жизни cookie ('expiry': 1685518907).\
-```pprint(cookies)```
+```pprint(cookies)``` для "понятной печати" структур данных, таких как словари и списки.
 
 ```
 [{'domain': '.ya.ru',
@@ -48,6 +48,6 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 - [x] Преобразует полученные значения в числа, суммирует их и выводит общую сумму в консоль.
 
 #### В программе использует: 
-```webdriver.get_cookies()```
+```webdriver.get_cookies()```\
 ```if 'secret_cookie_' in cookie['name']:```
 
