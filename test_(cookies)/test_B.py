@@ -1,8 +1,8 @@
 import time  # Модуль для работы с функцией ожидания
 from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 import json # Модуль для преобразования в формат json
-from selenium.webdriver.common.by import By
-import re
+import re # Модуль для работы с регулярными выражениями
 
 # Ссылка на страницу.
 link = 'https://parsinger.ru/selenium/5.6/1/index.html'
