@@ -36,14 +36,10 @@ python3 test_(cookies)/test_A.py >> test_(cookies)/output.txt
 ```webdriver.add_cookie({"name": "key", "value": "value"})```
 
 #### Получить  имена куки или их значения.\
-<<<<<<< HEAD
-Метод webdriver.get_cookies() получает список словарей, содержащих информацию, включая время истечения срока действия cookie ('expiry': 1685518907).\
-```pprint(cookies)```
-=======
+
 Метод cookies = webdriver.get_cookies() получает список словарей, содержащих информацию, включая время истечения срока действия cookie ('expiry': 1685518907).\
 ```pprint(cookies)``` для "понятной печати" структур данных, таких как словари и списки.
 
->>>>>>> dc97bdf69e8e01ee99fad2627f124174c060f6a2
 ```
 [{'domain': '.ya.ru',
   'expiry': 1685518907,
