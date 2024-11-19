@@ -1,56 +1,36 @@
-# Кодовое имя: Операция "Освобождение Пути"
-
-# Идентификация Элемента: Первым делом необходимо найти элемент, с которым вы хотите взаимодействовать. Пример поиска элемента по ID browser.find_element(By.ID, 'btn')
-# Получение Фокуса: Воспользуйтесь методом scrollIntoView для того, чтобы прокрутить страницу так, чтобы нужный элемент оказался в видимой области. Пример получения фокуса элемента element = browser.find_element(By.CLASS_NAME, 'btn') browser.execute_script("return arguments[0].scrollIntoView(true);", element)
-# Клик по Элементу: Теперь, когда элемент в фокусе, попробуйте снова выполнить клик.
-# Проверка Результата: Убедитесь, что ваше взаимодействие с элементом привело к желаемому результату(в теге с  <p id="result">788544</p> появляется уникальное для каждой кнопки число).
-# Суммирование:  Суммируйте все полученные числа.
-
-
-
-
-
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-
-
-
 import time  # Модуль для работы с функцией ожидания
 from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
 from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
+
 # ссылка на страницу
 link = "http://parsinger.ru/scroll/4/index.html"
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
-    # открывает браузер Chrome
-    browser = webdriver.Chrome()
-    # переходит по ссылке
-    browser.get(link)
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
 
     # Ищет все кнопки на странице
-    buttons = browser.find_elements(By.CSS_SELECTOR, "[class='btn']")
+    buttons = webdriver.find_elements(By.CSS_SELECTOR, "[class='btn']")
 
     # Поиск внутри списка элементов: находит все элементы на странице, которые являются элементами содержащими текст c помощью метода find_elements()
     # Инициализация переменной для хранения общего значения
     total = 0
+
     # Перебирает каждый найденный элемент в списке buttons
     for element in buttons:
         # Прокручивает страницу до элемента, чтобы он был виден
-        browser.execute_script("return arguments[0].scrollIntoView(true);", element)
+        webdriver.execute_script("return arguments[0].scrollIntoView(true);", element)
         # Нажимает на элемент
         element.click()
         # Находит элемент с результатом после нажатия на каждую кнопку
-        result = browser.find_element(By.CSS_SELECTOR, "[id='result']")
+        result = webdriver.find_element(By.CSS_SELECTOR, "[id='result']")
         # Добавляет значение результата к общему значению
         total += int(result.text)
     # Выводит в консоль сумму всех резуьтатов найденых при нажатии на каждую кнопку
     print(total)
 
-# оставляет пустую строку в конце файла
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
+# Браузер закрывается автоматически после завершения блока `with`
