@@ -16,13 +16,9 @@ link = "https://SunInJuly.github.io/execute_script.html"
 # Измеряет время выполнения определенного участка кода.
 start = time.time()
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-# Открывает браузер Chrome
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
-    webdriver.get(link)
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
 
     # Находит элемент с математическим выражением и сохраняет текст из этого элемента в переменную x
     x = webdriver.find_element(By.CSS_SELECTOR, "[id='input_value']").text
@@ -30,7 +26,9 @@ with webdriver.Chrome() as webdriver:
     input_area = webdriver.find_element(By.CSS_SELECTOR, "[id='answer']").send_keys(calc(x))
     # Нажимает кнопку отправки формы на веб-странице
     button_submit = webdriver.find_element(By.CSS_SELECTOR, "[type='submit']")
-    # Прокручивает страницу так, чтобы кнопка была видимой используя execute_script 
+    
+
+# Прокручивает страницу так, чтобы кнопка была видимой используя execute_script 
     webdriver.execute_script("return arguments[0].scrollIntoView(true);", button_submit)
 
     # Отмечает чекбокс на веб-странице
@@ -50,8 +48,6 @@ with webdriver.Chrome() as webdriver:
     alert.accept()
 
     # Завершение отсчета времени
-    end = time.time()
-    print(f"Время выполнения: {end - start} секунд.")
-
-    # Браузер закроется автоматически после завершения блока `with`
-    # Не забывает оставить пустую строку в конце файла
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
+# Браузер закрывается автоматически после завершения блока `with`
