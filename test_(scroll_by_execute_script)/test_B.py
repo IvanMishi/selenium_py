@@ -13,17 +13,17 @@ with webdriver.Chrome() as webdriver:  # Создаёт экземпляр др�
     webdriver.get(link)  # Переходит по ссылке.
     time.sleep(1)  # Убеждается что открыта искомая страница.
 
-    # Находит все чекбоксы на странице
+    # Находит все чекбоксы и span элементы на странице.
     input_list = webdriver.find_elements(By.TAG_NAME, 'input')
+    span_list = webdriver.find_elements(By.TAG_NAME, 'span')
 
     # Прокручивает к каждому чекбоксу и кликает на него
-    for tag_input in input_list:
-        webdriver.execute_script("return arguments[0].scrollIntoView(true);", tag_input)
-        tag_input.click()
-    # Находит все элементы span на странице и ищет цифры в их тексте, найденные цифры добавляет в список 'result'
-    for x in webdriver.find_elements(By.TAG_NAME, 'span'):
-        if x.text.isdigit():
-            result.append(int(x.text))
+    for checkbox, span in zip(input_list, span_list):
+        webdriver.execute_script("return arguments[0].scrollIntoView(true);", checkbox)
+        checkbox.click()
+        if span.text.isdigit(): # Ищет цифры в тексте.
+            result.append(int(span.text)) # Найденные цифры добавляет в список 'result'
+
 
     # Выводит сумму всех чисел, найденных в элементах span в консоль
     print(f'Ответ: {sum(result)}')
