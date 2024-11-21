@@ -3,17 +3,15 @@ from selenium import webdriver  # Модуль для взаимодействи
 from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
 # Ссылка на страницу
-link = 'http://parsinger.ru/scroll/2/'
+link = "http://parsinger.ru/scroll/2/"
 # Измеряет время выполнения определенного участка кода.
 start = time.time()
 # Список для хранения результата
 result = []
 
-with webdriver.Chrome() as webdriver:
-    # Переходит по ссылке
-    webdriver.get(link)
-    # Убеждается что открыта искомая страница
-    time.sleep(1)
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
 
     # Находит все элементы input на странице
     input_list = webdriver.find_elements(By.TAG_NAME, 'input')
@@ -30,9 +28,7 @@ with webdriver.Chrome() as webdriver:
     # Выводит сумму всех чисел, найденных в элементах span в консоль
     print(f'Ответ: {sum(result)}')
 
-    # Завершение отсчета времени
+# Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
-
-    # Браузер закроется автоматически после завершения блока `with`
-    # Не забывает оставить пустую строку в конце файла
+# Браузер закрывается автоматически после завершения блока `with`
