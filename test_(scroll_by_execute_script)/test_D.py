@@ -30,7 +30,8 @@ with webdriver.Chrome() as webdriver:  # Создаёт экземпляр др�
             checkbox.click()
 
     # Находит и нажимает кнопку alert на странице
-    webdriver.find_element(By.CSS_SELECTOR, ".alert_button").click()
+    if webdriver.find_element(By.CSS_SELECTOR, ".alert_button"):
+        webdriver.find_element(By.CSS_SELECTOR, ".alert_button").click()
     # Выводит текст из диалогового окна alert в качестве ответа
     print(f'Ответ: {webdriver.switch_to.alert.text}')
 
