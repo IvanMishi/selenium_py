@@ -1,65 +1,46 @@
-#  Работает с каждым куки по ссылке Кодовое имя: Операция "Бессмертный Печенюшка" COOKIE
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
-# Откройте основной сайт с помощью Selenium.
-
-# На основной странице будет 42 ссылки. Открывайте каждую из них, чтобы исследовать и выяснить, какой из cookies имеет самый долгий срок жизни.
-# Для каждой открытой страницы анализируйте срок жизни её cookie ['expiry']. Сохраняйте эти данные для последующего сравнения.
-
-# После проверки всех 42 страниц определите, на какой из них находится cookie с самым долгим сроком жизни. С этой страницы извлеките число которое лежит в  теге <p id="result">INT</p>
-
-# Вставьте полученное число в специальное поле для степик.
+# Незарегестированный пользователь переходит по ссылке
+# Собирает данные о жизни куки в каждой найденной ссылке переходя по ней
+# Ищет куки с самым долгим сроком жизни и выводит в качестве ответа число из тега <p id="result">INT</p> на странице этого куки
 
 
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-# импортирует модуль math, который предоставляет математические функции
-import math 
-# Вывод функции pprint форматируется так, чтобы делать структуру данных более понятной и удобной для анализа.
-from pprint import pprint
-
-
-
-
-# ссылка на страницу 
+# Cсылка на страницу
 link = "https://parsinger.ru/methods/5/index.html"
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
+# Переменная для хранения количества найденных элементов.
+count = 0
 
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
 
-# открывает браузер Chrome
-    browser = webdriver.Chrome()
-# переходит по ссылке
-    browser.get(link)
+    # Инициализирует пустой словарь для связи значений куки 'expiry' с INT из элемента <p id="result">INT</p>
+    expiry_to_int_mapping = {}
 
-# инициализирует пустой словарь для связи значений куки 'expiry' с INT из элемента <p id="result">INT</p>
-    expiry_to_int_mapping = {}   
-
-# 
-    links = browser.find_elements(By.CSS_SELECTOR, "[class='urls']")
+    #
+    links = webdriver.find_elements(By.CSS_SELECTOR, "[class='urls']")
     # проходит по каждой ссылке
     for link in links:
-    # переходит на найденную ссылку
-        link.click()    
-    # получает все куки из этой ссылки
-        cookies = browser.get_cookies()
-    # парсит значение INT из элемента <p id="result">INT</p> из ссылки
-        int_value = int(browser.find_element(By.ID, "result").text)
-    # проходит по каждой куки и проверяем наличие ключа 'expiry'
+        # переходит на найденную ссылку
+        link.click()
+        # получает все куки из этой ссылки
+        cookies = webdriver.get_cookies()
+        # Парсит значение INT из элемента <p id="result">INT</p> из ссылки
+        int_value = int(webdriver.find_element(By.ID, "result").text)
+        # Проходит по каждой куки и проверяем наличие ключа 'expiry'
         for cookie in cookies:
             if 'expiry' in cookie:
                 expiry_value = int(cookie['expiry'])
                 expiry_to_int_mapping[expiry_value] = int_value
-    # возвращается назад после сбора данных из ссылки
-        browser.back()
+        # Возвращается назад после сбора данных из ссылки
+        webdriver.back()
 
-
-# Находим самое большое значение куки 'expiry'
+    # Находим самое большое значение куки 'expiry'
     max_expiry_value = max(expiry_to_int_mapping.keys(), default=None)
     if max_expiry_value is not None:
         max_int_value = expiry_to_int_mapping[max_expiry_value]
@@ -67,5 +48,7 @@ with webdriver.Chrome() as browser:
     else:
         print("Куки с ключом 'expiry' не найдены.")
 
-
-# оставляет пустую строку в конце файла
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
+# Браузер закрывается автоматически после завершения блока `with`
