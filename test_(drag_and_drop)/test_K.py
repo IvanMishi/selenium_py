@@ -1,5 +1,6 @@
 # импортирует модуль time для работы с ожиданием
 import time
+
 # импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
 from selenium import webdriver
 # импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
@@ -11,33 +12,30 @@ from selenium.webdriver.support.wait import WebDriverWait
 #from selenium.webdriver import Keys
 
 # ссылка на страницу
-link = "https://parsinger.ru/infiniti_scroll_2/"
-
+link = "https://parsinger.ru/selenium/5.7/5/index.html"
+start = time.time()
 # Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
+with webdriver.Chrome() as webdriver:
     # открывает браузер Chrome
 
     # переходит по ссылке
-    browser.get(link)
+    webdriver.get(link)
     time.sleep(2)
-    #actual_result = int(2691483484)
 
+    count = 0
     sum_of_numbers = 0  # Переменная для хранения суммы чисел
     count = 0
-    div = browser.find_element(By.XPATH, '//*[@id="scroll-container"]/div')
+    parrent = webdriver.find_elements(By.CSS_SELECTOR, "[id='main_container'] button")
 
-    for _ in range(10):
-        ActionChains(browser).move_to_element(div).scroll_by_amount(1, 5000).perform()
+    for element in parrent:
+        #webdriver.execute_script("return arguments[0].scrollIntoView(true);", element)
+        text = element.get_attribute('value')
+        ActionChains(webdriver).click_and_hold(element).pause(float(text)).release(element).perform()
+        print(text)
+        count+=1
+        #webdriver.execute_script("return arguments[0].scrollIntoView(true);", element)
 
-    flag = True
-    while flag:
-        for element in div.find_elements(By.XPATH, '//*[@id="scroll-container"]/p'):
-            num = element.text
-            sum_of_numbers+=int(num)
-            count+=1
-            print(f'элемент{count}, с числом{num}, общаяя сумма {sum_of_numbers}')
-            if element.get_attribute('class') == 'last-of-list':
-                flag = False
-
-    print(f"Сумма чисел из элементов: {sum_of_numbers}")
-    #assert actual_result == sum_of_numbers
+    time.sleep(2)
+    print(count)
+    print(f'Time is running{time.time() - start}')
+    alert_text = webdriver.s
