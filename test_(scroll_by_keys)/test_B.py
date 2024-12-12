@@ -1,13 +1,8 @@
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+from selenium.webdriver import Keys # Импортируется класс Keys из модуля webdriver библиотеки Selenium, который содержит специальные клавиши, такие как ENTER, ESC и TAB, для имитации нажатий в автоматизированных тестах веб-приложений.
 
-# from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver import Keys
 
 # ссылка на страницу
 link = "http://parsinger.ru/infiniti_scroll_1/"
