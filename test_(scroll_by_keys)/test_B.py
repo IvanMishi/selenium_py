@@ -6,14 +6,12 @@ from selenium.webdriver import Keys # Импортируется класс Keys
 
 # ссылка на страницу
 link = "http://parsinger.ru/infiniti_scroll_1/"
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
-    # открывает браузер Chrome
-    browser = webdriver.Chrome()
-    # переходит по ссылке
-    browser.get(link)
-    time.sleep(2)
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
 
     list_input = []  # Инициализируем пустой список для хранения обработанных элементов ввода
     sum_of_numbers = 0  # Переменная для хранения суммы чисел
