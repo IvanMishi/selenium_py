@@ -1,7 +1,7 @@
 import time  # Модуль для работы с функцией ожидания
 from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
 from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
-from selenium.webdriver import Keys # Класс Keys из модуля webdriver библиотеки Selenium, который содержит специальные клавиши, такие как ENTER, ESC и TAB, для имитации нажатий в автоматизированных тестах веб-приложений.
+from selenium.webdriver import Keys # Импортируется класс Keys из модуля webdriver библиотеки Selenium, который содержит специальные клавиши, такие как ENTER, ESC и TAB, для имитации нажатий в автоматизированных тестах веб-приложений.
 
 
 # Cсылка на страницу
