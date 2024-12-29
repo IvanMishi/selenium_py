@@ -51,10 +51,10 @@ Selenium имеет большое количество методов, кото
 
 
 ### Исполнение JavaScript 
-webdriver.execute_script("script_code")
+```webdriver.execute_script("script_code")```
 Выполняет JavaScript код на текущей странице.
 
-webdriver.execute_async_script("script_code" , *args )
+```webdriver.execute_async_script("script_code" , *args )```
 Асинхронно выполняет JavaScript код. 
 Удобно для работы с AJAX и промисами.
 
