@@ -54,6 +54,9 @@ Selenium имеет большое количество методов, кото
 webdriver.execute_script("script_code")
 Выполняет JavaScript код на текущей странице.
 
+webdriver.execute_async_script("script_code" , *args )
+Асинхронно выполняет JavaScript код. 
+Удобно для работы с AJAX и промисами.
 
 ### Время ожидания
 
