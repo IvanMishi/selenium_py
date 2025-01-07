@@ -1,59 +1,46 @@
-# Импортирует модуль time для работы с ожиданием
-import time 
-# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+ 
 
-# Переменная expected_result содержит ожидаемый текст результата, который участник тестового сценария ожидает увидеть после успешного завершения
-expected_result = "Thank you for submitting the form!"
-
-
-# открывает браузер Chrome
-webdriver = webdriver.Chrome()
-# Ждет 2 секунды
-time.sleep(2)
-
+# Cсылка на страницу
+link = "https://parsinger.ru/selenium/5.5/4/1.html"
 # Измеряет время выполнения определенного участка кода.
 start = time.time()
 
-# Переходит по ссылке, метод get сообщает браузеру, что нужно открыть сайт по указанной ссылке
-webdriver.get("https://suninjuly.github.io/text_input_task.html")
-# ждет 2 секунды
-time.sleep(2)
-
-# Находит поле для ввода текста на веб-странице
-# Метод find_element находит элемент на сайте по заданным параметрам, "class name" и "textarea" параметры для поиска конкретного элемента на странице.
-# Когда этот метод будет выполнен, будет возвращен объект, который представляет найденный элемент на веб-странице.
-textarea = webdriver.find_element("class name", "textarea")
-# Вводит текст в поле textarea
-textarea.send_keys("пользовательский текст")
-# Ждет 2 секунды
-time.sleep(2)
-
-# Находит кнопку отправки формы на веб-странице, используя уникальный идентификатор "submit_button"
-submit_button = webdriver.find_element("id", "submit_button")
-# Нажимает на кнопку отправки формы
-submit_button.click()
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
+    # Инициализация переменной для хранения общего значения textarea
+    total = 0
+    # Инициализация переменной для хранения общего количества найденых  отмеченых чекбоксов
+    numbers = 0
 
 
-# Убеждается, что текст всплывающего окна (alert) соответствует ожидаемому результату. Если текст в алерте не совпадает с ожидаемым текстом, будет выведено сообщение об ошибке.
-# Получает alert на веб-странице
-alert = webdriver.switch_to.alert
-# Сохраняет текст предупреждения (alert) в переменной actual_result
-actual_result = alert.text
-# Ждет 1 секунду
-time.sleep(1)
-# Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
-alert.accept()
+    # Ищет все родительские элементы на странице, содержащие текстовые поля gray и blue, а также кнопку submit
+    parent_elements = webdriver.find_elements(By.CSS_SELECTOR, ".parent")
 
+    # Перебирает каждый найденный элемент в списке родительских элементов
+    for parent_element in parent_elements:
+        # Находит gray внутри каждого родительского элемента
+        gray_element = parent_element.find_element(By.CSS_SELECTOR, "[color='gray']").text
+        # Находит blue внутри каждого родительского элемента
+        blue_element = parent_element.find_element(By.CSS_SELECTOR, "[color='blue']").send_keys(gray_element)
 
-# Если alert_text верен, дополнительные сообщения в консоли не должны выводиться.
-# При вызове assert можно добавить дополнительное сообщение через запятую для вывода в случае ошибки
-assert actual_result == expected_result, f"Текст алерта не соответствует ожидаемому. Полученный текст: {actual_result}, Ожидаемый текст: {expected_result}" 
-print(f'Полученный текст алерта "{actual_result}" соответствует ожидаемому результату.')
+        # Очищает поле gray внутри каждого родительского элемента
+        gray_element = parent_element.find_element(By.CSS_SELECTOR, "[color='gray']").clear()
+        # Находит кнопки 'submit' внутри каждого родительского элемента
+        parent_button = parent_element.find_element(By.CSS_SELECTOR, "[class='parent'] > button").click()
+
+    # Нажиамет кнопку для проверки резуьтата
+    check_all_button = webdriver.find_element(By.ID, 'checkAll').click()
+    # Получает текст у появившегося элемента с резуьтатом
+    result = webdriver.find_element(By.ID, 'congrats').text
+    # Выводит результат в консоль
+    print(result)
+
 
 # Завершение отсчета времени
 end = time.time()
 print(f"Время выполнения: {end - start} секунд.")
-
-# закрывает браузер
-webdriver.quit()
+# Браузер закрывается автоматически после завершения блока `with`
