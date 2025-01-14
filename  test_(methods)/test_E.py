@@ -1,60 +1,33 @@
-# Используйте Selenium для открытия заданного веб-сайта.
-
-# В элементе с id="result" иногда появляется число — это и есть ваше сокровище. Проблема в том, что оно появляется очень редко. Вам придется обновлять страницу множество раз, пока не увидите это число.
-
-# Как только число появится, скопируйте его и вставьте в предназначенное для этого поле ответа на вашем курсе.
-
-# Для решения этой задачи используйте. browser.refresh()
-# Запускает в режиме '--headless'
-# Считает сколько раз обновилаь страница 
-
-# импортирует необходимые библиотеки
-# импортирует модуль time для работы с ожиданием
-import time 
-# импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver 
-# импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-# импортирует модуль math, который предоставляет математические функции
-import math 
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
 
-
-
-# ссылка на страницу 
+# Cсылка на страницу
 link = "https://parsinger.ru/methods/1/index.html"
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
 
 
-
-
-# Менеджер контекста with/as в Python используется для выполнения определенных действий до и после выполнения блока кода.
-with webdriver.Chrome() as browser:
-
-# открывает браузер Chrome
-    browser = webdriver.Chrome()
-# переходит по ссылке
-    browser.get(link)
-
-
-
-
-
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
+    
+    # Обновляет страницу пока в элементе не появится числовое значение.
     while True:
         try:
-            actual_result = browser.find_element(By.CSS_SELECTOR, "[id='result']").text
+            actual_result = webdriver.find_element(By.CSS_SELECTOR, "[id='result']").text
             if actual_result.isdigit():  # Проверка на число
                 break  # Выход из цикла, если текст найден в элементе
         except NoSuchElementException:
             pass
-    
-        browser.refresh()
+        webdriver.refresh()
     time.sleep(2)
 
-
-
-
-# выводит значение переменной actual_result в консоль
+    # Выводит значение переменной actual_result в консоль в качестве ответа
     print('Ответ', actual_result)
 
-# оставляет пустую строку в конце файла
 
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
