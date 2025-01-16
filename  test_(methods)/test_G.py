@@ -1,21 +1,30 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
-url = 'http://parsinger.ru/selenium/3/3.html'
 
-# Инициализация драйвера в контексте with, чтобы он закрылся после завершения работы
-with webdriver.Chrome() as browser:
-    # Открываем URL
-    browser.get(url)
-    
+# Cсылка на страницу
+link = "http://parsinger.ru/selenium/3/3.html"
+# Измеряет время выполнения определенного участка кода.
+start = time.time()
+
+
+with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    webdriver.get(link)  # Переходит по ссылке.
+    time.sleep(1)  # Убеждается что открыта искомая страница.
+
     # Ищем все div с классом 'text'
-    divs = browser.find_elements(By.CLASS_NAME, 'text')
-    
+    list_div = webdriver.find_elements(By.CLASS_NAME, 'text')
     # Проходимся по каждому div
-    for i, div in enumerate(divs):
+    for i, div in enumerate(list_div):
         # Получаем первый и третий теги <p> внутри каждого div
         first_p = div.find_element(By.XPATH, './p[1]')
         third_p = div.find_element(By.XPATH, './p[3]')
-        
+
         # Выводим их текст
-        print(f"Для div #{i+1}, первый p: {first_p.text}, третий p: {third_p.text}")
+        print(f"Для div #{i + 1}, первый p: {first_p.text}, третий p: {third_p.text}")
+
+
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
