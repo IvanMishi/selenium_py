@@ -1,14 +1,7 @@
-# Импортирует необходимые библиотеки
-# Импортирует модуль time для работы с ожиданием
-import time
-# Импортирует модуль webdriver из библиотеки selenium для взаимодействия с веб-браузером
-from selenium import webdriver
-# Импортирует модуль By из библиотеки selenium.webdriver.common для использования способа поиска элементов на странице
-from selenium.webdriver.common.by import By
-# Импортирует модуль math, который предоставляет математические функции
-import math
-# Импортирует модуль re, который позволяет работать с регулярными выражениями для поиска, замены и обработки текстовых данных по заданным правилам.
-import re
+import time  # Модуль для работы с функцией ожидания
+from selenium import webdriver  # Модуль для взаимодействия с веб-браузерами
+from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
+import re # Модуль для работы с регулярными выражениями
 
 
 # Ссылка на страницу
@@ -32,7 +25,7 @@ try:
     # Находит и заполняет поле "City" с помощью правил на основе X-path
     input_city = webdriver.find_element(By.XPATH, "//input[@class='form-control city']").send_keys("Smolensk")
     # Находит и заполняет поле "Country" с помощью правил на основе X-path
-    input_county = webdriver.find_element(By.XPATH, "//input[@id='country']").send_keys("Russia") 
+    input_county = webdriver.find_element(By.XPATH, "//input[@id='country']").send_keys("Russia")
 
     # Находит и нажимает кнопку Submit с помощью правил на основе X-path
     button_submit = webdriver.find_element(By.XPATH, "//button[@type='submit']").click()
@@ -55,8 +48,5 @@ finally:
     # Завершение отсчета времени
     end = time.time()
     print(f"Время выполнения: {end - start} секунд.")
-
     # Закрывает браузер
     webdriver.quit()
-
-# Не забывает оставить пустую строку в конце файла
