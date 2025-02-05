@@ -24,7 +24,6 @@ python3 test_5(by_xpath)/test_A.py >> test_5(by_xpath)/output.txt
 - [x] Ищет кнопку 'Submit' по x-path локатору и нажимает на нее.
 
 #### В программе использует x-path локаторы для поиска элеменов:
-Для поиска локатора в chrome использует devtools cmd+f //input[@name='first_name'] или console $x("//input[@name='first_name']")
 ```.find_element(By.XPATH, "//input[@name='first_name']")```    '//' выбор всех потомков элемента от корневого узла. <input> это тег, [ ] фильтрация согласно правилу в скобках, где 'name' - это атрибут, 'first_name' его значение.
 ```.find_element(By.XPATH, "//input[@name='last_name']")```    '//' выбор всех потомков элемента от корневого узла. <input> это тег, [ ] фильтрация согласно правилу в скобках, где 'name' - это атрибут, 'last_name' его значение.
 ```.find_element(By.XPATH, "//input[@class='form-control city']")```'//' выбор всех потомков элемента от корневого узла. <input> это тег, [ ] фильтрация согласно правилу в скобках, где 'class' - это атрибут, 'form-control city' его значение.
@@ -46,6 +45,7 @@ XPATH позволяет точно указать, какие элементы 
 
 
 ## Пример использования x-path локатора для поиска элемента 'Второй пост'
+Для поиска локатора в chrome использует devtools cmd+f //input[@name='first_name'] или console $x("//input[@name='first_name']")
 ```
 <html>
 <head>
