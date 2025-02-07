@@ -26,10 +26,10 @@ python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 - [x] Нажимает кнопку 'Submit'.
 
 #### В программе использует CSS локаторы для поиска элеменов:
-```div.container div.form-group input.form-control```
-```div.form-check [type='checkbox'```
-```[name='ruler'][value='robots']```
-```form > [type='submit']```
+```div.container div.form-group input.form-control``` Находит элемент <input>, который находится внутри элемента <div class="form-group">, который, в свою очередь, находится внутри элемента <div class="container">.
+```div.form-check [type='checkbox']``` Выбирает элементы типа <input>, у которых атрибут type равен checkbox. Эти элементы находятся внутри <div class="form-check">.
+```[name='ruler'][value='robots']``` Выбирает элементы, у которых атрибут name равен ruler и атрибут value равен robots.
+```form > [type='submit']``` Находит элементы, у которых атрибут type равен submit, и которые являются непосредственными дочерними элементами тега <form>
 
 
 ## Пример использования CSS локатора для поиска элемента 'Второй пост'
