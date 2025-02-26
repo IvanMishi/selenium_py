@@ -3,8 +3,8 @@ from selenium import webdriver  # Модуль для взаимодействи
 
 
 with webdriver.Chrome() as webdriver:
-    webdriver.switch_to.new_window('tab') # Запросы или поиск элементов будет выполняться на этой странице
     webdriver.get("https://ya.ru")
+    webdriver.execute_script('window.open("https://icloud.com", "_blank");')
     time.sleep(5)
     print(webdriver.title)
     webdriver.get("https:google.com")
