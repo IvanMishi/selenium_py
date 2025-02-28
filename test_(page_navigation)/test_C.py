@@ -4,7 +4,7 @@ from selenium import webdriver  # Модуль для взаимодействи
 
 with webdriver.Chrome() as webdriver:
     webdriver.get("https://ya.ru")
-    webdriver.execute_script('window.open("https://icloud.com", "_blank");')
+    webdriver.execute_script('window.open("https://icloud.com", "_blank");') # Открытие вкладки через JavaScript.
     time.sleep(5)
     print(webdriver.title)
     webdriver.get("https:google.com")
