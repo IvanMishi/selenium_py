@@ -7,4 +7,5 @@ with webdriver.Chrome() as webdriver:
     time.sleep(5)
     webdriver.get("about:blank")
     time.sleep(5)
+    
 
