@@ -4,8 +4,10 @@ from selenium import webdriver  # Модуль для взаимодействи
 
 with webdriver.Chrome() as webdriver:
     pass
+    print(webdriver.execute_script("return document.title;"))
     time.sleep(5)
     webdriver.get("about:blank")
+    print(webdriver.execute_script("return document.title;"))
     time.sleep(5)
     
 
