@@ -6,7 +6,7 @@ import time
 with webdriver.Chrome() as browser:
     # Переход на указанную страницу
     browser.get("https://parsinger.ru/selenium/8/8.1.2/index.html")
-    main_window = browser.current_window_handle
+    main_page = browser.current_window_handle
     time.sleep(1)
 
     # Поиск всех ссылок на странице
@@ -33,10 +33,9 @@ with webdriver.Chrome() as browser:
             result.append(k.text)
 
     # Вывод суммы чисел
-    psw = sum(int(i) for i in result)
 
-    browser.switch_to.window(main_window)
-    browser.find_element(By.ID, 'sumInput').send_keys(str(psw))
+    browser.switch_to.window(main_page)
+    browser.find_element(By.ID, 'sumInput').send_keys(str(sum(int(i) for i in result)))
     time.sleep(6)
     browser.find_element(By.ID, 'checkButton').click()
     print(browser.find_element(By.ID, 'passwordDisplay').text)
