@@ -19,7 +19,7 @@ python3 test_(waits)/test_A.py >> test_(waits)/output.txt
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
 
-## Проверка видимости и присутствия элементов в HTML, я
+## Проверка видимости и присутствия элементов в HTML
 WebDriverWait(browser, poll_frequency=0.5, timeout=10).until(EC.presence_of_element_located((locator)))
 Если метод работает с одним элементом → он возвращает WebElement
 Если метод работает с несколькими элементами → он возвращает list[WebElement]
