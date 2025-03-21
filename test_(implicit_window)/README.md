@@ -1,0 +1,52 @@
+# Неявное ожидание(Implicit waits)  
+
+## Инженер по тестированию переходит в директорию, предназначенную для хранения файлов с тестами
+```
+cd selenium_tests
+```
+## Из директории selenium_tests активирует виртуальное окружение
+```sh
+source selenium_env/bin/activate
+```
+## В активированном окружении запускает тест 
+```sh
+python3 test_(waits)/test_A.py
+```
+## Для вывода результата в отдельный файл зпускает командой 
+```sh
+python3 test_(waits)/test_A.py >> test_(waits)/output.txt
+```
+Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
+
+
+## Ожидание окон, элементов и алертов
+WebDriverWait(browser, poll_frequency=0.5, timeout=10).until(EC.presence_of_element_located((locator)))
+Если метод работает с одним элементом → он возвращает WebElement
+Если метод работает с несколькими элементами → он возвращает list[WebElement]
+
+
+* EC.frame_to_be_available_and_switch_to_it(locator)
+* EC.staleness_of(element)
+* EC.element_to_be_selected(element)
+* EC.element_located_to_be_selected(locator)
+* EC.element_selection_state_to_be(element, is_selected)
+* EC.element_located_selection_state_to_be(locator, is_selected)
+* EC.number_of_windows_to_be(num_windows)
+* EC.new_window_is_opened(current_handles)
+* EC.alert_is_present()
+
+
+
+
+## Тестовые данные test_A
+- [x] Незарегестированный пользователь переходит по ссылке
+- [x] Ждет когда кнопка станет кликбельной
+- [x] После успешного нажатия на кнопку ожидает полного совпадения заголовка, если заголовок совпадает выводит текст из элемента с id='result' в консоль\
+#### В программе использует явные ожидания: 
+``` .element_to_be_clickable()``` \
+Это условие, предназначено для ожидания, пока элемент на веб-странице не станет видимым и доступным для клика. \
+```.title_is()``` \
+Ожидание проверки заголовка страницы. title - ожидаемый заголовок, который должен быть точным совпадением, возвращает True, если заголовок совпадает, в противном случае - false. 
+Заголовок страницы является важным индикатором правильности навигации по сайту. 
+Он помогает удостовериться, что вы находитесь на нужной странице, особенно при автоматизации процесса. При вызове условия Selenium сравнивает текущий заголовок страницы с заданной строкой. Если они совпадают, условие считается выполненным.
+
