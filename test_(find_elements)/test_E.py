@@ -10,12 +10,12 @@ link = 'https://parsinger.ru/selenium/5.5/5/1.html'
 start = time.time()
 
 
-with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
-    webdriver.get(link)  # Переходит по ссылке.
+with webdriver.Chrome() as driver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    driver.get(link)  # Переходит по ссылке.
     time.sleep(1)  # Убеждается что открыта искомая страница.
 
     # Ищет родительские элементы с текстовыми полями "gray" и "blue", а также кнопкой "submit".
-    parent_elements = webdriver.find_elements(By.CSS_SELECTOR, "[id='main-container'] > div")
+    parent_elements = driver.find_elements(By.CSS_SELECTOR, "[id='main-container'] > div")
 
     # Перебирает каждый найденный элемент в списке родительских элементов.
     for child_element in parent_elements:
@@ -33,20 +33,19 @@ with webdriver.Chrome() as webdriver:  # Создаёт экземпляр др�
         input_text_element = child_element.find_element(By.CSS_SELECTOR,"[id='main-container'] > div > [type='text']").send_keys(span_element)
         # Находит кнопку подтверждения и кликает по ней.
         check_btn_element = child_element.find_element(By.CSS_SELECTOR, "[id='main-container'] > div > button").click()
+        
+    check_all_button = driver.find_element(By.CSS_SELECTOR, "body > button").click()
 
-    check_all_button = webdriver.find_element(By.CSS_SELECTOR, "body > button").click()
 
-    time.sleep(1)
-    # Получает alert на веб-странице
-    alert = webdriver.switch_to.alert
-    # Сохраняет текст предупреждения (alert) в переменной actual_result
-    actual_result = alert.text
-    # Выводит числовое значение полученного текста из alert в консоль в качестве ответа
-    print(' '.join([f'Ответ {number}' for number in re.findall(r'\d+\.\d+', alert.text)]))
+    # Получает alert на веб-странице и переключается на него
+    alert = driver.switch_to.alert
+    # Выводит значение полученного текста из alert в консоль в качестве ответа
+    print(f'Ответ {alert.text}')
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
+    # Убеждается, что все действия выполнены успешно.
+    time.sleep(3)
 
 # Завершение отсчета времени
 end = time.time()
 print(f"Время выполнения: {end - start} секунд.")
-# Браузер закрывается автоматически после завершения блока `with`
