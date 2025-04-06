@@ -18,6 +18,54 @@ python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 ```
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
+
+## Пример использования CSS локатора для поиска элемента 'Второй пост'
+Для поиска локатора в chrome использует devtools cmd+f [name='first_name'] или console $$([name='first_name']")
+для копирования элемента необходимо выбрать в окне Copy CSS
+```
+<div id="posts" class="post-list">
+    <div id="post1" class="item">
+        <div class="title">Первый пост</div>
+        <img src="./images/image-1.png">
+    </div>
+    <div id ="post2" class="item">
+        <div class="title second">Второй пост</div>
+       <div class="title">Второй пост</div>
+        <img src="./images/image-2.png">
+    </div>
+    <div id="post3" class="item">
+        <div class="title">Третий пост</div>
+        <img src="./images/image-3.png">
+    </div>
+```
+### Использование потомков ```.```
+Синтаксис запроса::
+```#post2 .title```\
+или\
+```#post2 .second```\
+или\
+```#post2 .title.second```\
+или \
+```div.post-list div.item#post2```\
+```div.post-list div.item div.title.second```\
+```#``` означает, что надо искать элемент с id post2\
+```пробел``` - что также нужно найти элемент-потомок\
+```.``` элемент-потомок должен иметь класс со значением title или second или несколько классов записываются подряд через точку
+
+### Использование дочерних элементов 
+```>```
+Синтаксис запроса::
+```#post2 > div.title```
+или\
+```#post2 > div.second```\
+div.title или div.second, который находится > строго на один уровень иерархии ниже чем элемент #post2
+
+### Использование порядкового номера дочернего элемента
+Синтаксис запроса::
+```#posts > .item:nth-child(2) > .title```\
+Псевдокласс :nth-child(2) выбирает второй дочерний элемент для #posts.
+Конструкция > .title указывает на элемент .title, родителем которого является ранее найденный элемент .item.
+
 ## Тестовые данные test_A
 - [x] Незарегистрированный пользователь переходит по ссылке 
 - [x] Ищет цифру-подсказку для вычисления математическим выражением и заполнения поля данными.
@@ -44,52 +92,3 @@ CSS позволяет точно указать, какие элементы в
 При итерации по элементам внутри списка:
 ```div.find_element(By.CSS_SELECTOR, 'p:nth-of-type(1)')``` Получает первый тег <p> в найденом элементе <div>
 ```div.find_element(By.CSS_SELECTOR, 'p:nth-of-type(3)')``` Получает третий тег <p> в найденом элементе <div>
-
-
-
-
-## Пример использования CSS локатора для поиска элемента 'Второй пост'
-Для поиска локатора в chrome использует devtools cmd+f [name='first_name'] или console $$([name='first_name']")
-```
-<div id="posts" class="post-list">
-    <div id="post1" class="item">
-        <div class="title">Первый пост</div>
-        <img src="./images/image-1.png">
-    </div>
-    <div id ="post2" class="item">
-        <div class="title second">Второй пост</div>
-       <div class="title">Второй пост</div>
-        <img src="./images/image-2.png">
-    </div>
-    <div id="post3" class="item">
-        <div class="title">Третий пост</div>
-        <img src="./images/image-3.png">
-    </div>
-```
-### Использование потомков ```.```
-#### ищет в DOM:
-```#post2 .title```\
-или\
-```#post2 .second```\
-или\
-```#post2 .title.second```\
-или \
-```div.post-list div.item#post2```\
-```div.post-list div.item div.title.second```\
-```#``` означает, что надо искать элемент с id post2\
-```пробел``` - что также нужно найти элемент-потомок\
-```.``` элемент-потомок должен иметь класс со значением title или second или несколько классов записываются подряд через точку
-
-### Использование дочерних элементов 
-```>```
-#### ищет в DOM:
-```#post2 > div.title```
-или\
-```#post2 > div.second```\
-div.title или div.second, который находится > строго на один уровень иерархии ниже чем элемент #post2
-
-### Использование порядкового номера дочернего элемента
-#### ищет в DOM:
-```#posts > .item:nth-child(2) > .title```\
-Псевдокласс :nth-child(2) выбирает второй дочерний элемент для #posts.
-Конструкция > .title указывает на элемент .title, родителем которого является ранее найденный элемент .item.
