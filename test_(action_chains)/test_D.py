@@ -12,15 +12,18 @@ start = time.time()
 with webdriver.Chrome() as driver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
     driver.get(link)  # Переходит по ссылке
     time.sleep(1)  # Убеждается что открыта искомая страница
-
+    # Находит левый контейнер
     left_container = driver.find_element(By.ID, "scrollable-container-left")
+    # Переключается на левый контейнер и нажимает кнопку "END"
     ActionChains(driver).click(left_container).send_keys(Keys.END).perform()
-
+    # Находит правый контейнер
     right_container = driver.find_element(By.ID, "scrollable-container-right")
+    # Переключается на правый контейнер и нажимает кнопку "END"
     ActionChains(driver).click(right_container).send_keys(Keys.END).perform()
+    # Убеждается, что все действия выполнены успешно.
     time.sleep(1)
 
-    #Находит элемент с результатом по его ID и выводит его текст
+    # Находит элемент с результатом по его ID и выводит его текст в качестве ответа
     print(f'Ответ: {driver.find_element(By.ID,'passwordContainer').text.split(":")[1].strip()}')
 
 # Завершение отсчета времени
