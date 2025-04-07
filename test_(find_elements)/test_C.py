@@ -12,6 +12,7 @@ start = time.time()
 with webdriver.Chrome() as driver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
     driver.get(link)  # Переходит по ссылке.
     time.sleep(1)  # Убеждается что открыта искомая страница.
+    assert link == driver.current_url, f'\nОжидаемый   URL: {link}, \nФактический URL: {driver.current_url}' # Ошибка будет выведена в консоль в случае если URL не совпадают
 
     # Проверка существования элементов: проверяет наличие элементов ввода на странице с помощью find_elements(). Если они найдены, заполняются данными.
     input_elements = driver.find_elements(By.TAG_NAME, "input")
