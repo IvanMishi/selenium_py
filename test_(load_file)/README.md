@@ -10,11 +10,11 @@ source selenium_env/bin/activate
 ```
 ## В активированном окружении запускает тест 
 ```sh
-python3 test_11(load_file)/test_11.py
+python3 test_(load_file)/test_.py
 ```
 ## Для вывода результата в отдельный файл зпускает командой 
 ```sh
-python3 test_11(load_file)/test_11.py >> test_11(load_file)/output.txt
+python3 test_(load_file)/test_.py >> test_(load_file)/output.txt
 ```
 Где TES11.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
