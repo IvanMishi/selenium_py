@@ -22,22 +22,36 @@ python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 ## Пример использования CSS локатора для поиска элемента 'Второй пост'
 Для поиска локатора в chrome использует devtools cmd+f [name='first_name'] или console $$([name='first_name']")
 для копирования элемента необходимо выбрать в окне Copy CSS
-```
-<div id="posts" class="post-list">
-    <div id="post1" class="item">
-        <div class="title">Первый пост</div>
-        <img src="./images/image-1.png">
-    </div>
-    <div id ="post2" class="item">
-        <div class="title second">Второй пост</div>
-       <div class="title">Второй пост</div>
-        <img src="./images/image-2.png">
-    </div>
-    <div id="post3" class="item">
-        <div class="title">Третий пост</div>
-        <img src="./images/image-3.png">
-    </div>
-```
+
+
+```<html>```
+```<head>```
+```    <title>Мои посты</title>```
+```</head>```
+```<body>```
+```<div id="posts" class="post-list">```
+```    <div id="post1" class="item">```
+```        <div class="title">Первый пост</div>```
+```        <img src="./images/image-1.png">```
+```    </div>```
+```    <div id ="post2" class="item">```
+```        <div class="title second">Второй пост</div>```
+```       <div class="title">Второй пост</div>```
+```        <img src="./images/image-2.png">```
+```    </div>```
+```    <div id="post3" class="item">```
+```        <div class="title">Третий пост</div>```
+```        <img src="./images/image-3.png">```
+```    </div>```
+```    </div>```
+```</body>```
+```</html>```
+
+### Использование фильтрации запроса ```[]``
+```[id='post2']```
+или\
+```div[id='post2']```
+
 ### Использование потомков ```.```
 Синтаксис запроса::
 ```#post2 .title```\
@@ -52,8 +66,7 @@ python3 test_6(by_css)/test_A.py >> test_6(by_css)/output.txt
 ```пробел``` - что также нужно найти элемент-потомок\
 ```.``` элемент-потомок должен иметь класс со значением title или second или несколько классов записываются подряд через точку
 
-### Использование дочерних элементов 
-```>```
+### Использование дочерних элементов ```>```
 Синтаксис запроса::
 ```#post2 > div.title```
 или\
