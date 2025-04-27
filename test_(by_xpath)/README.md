@@ -25,31 +25,30 @@ python3 test_5(by_xpath)/test_A.py >> test_5(by_xpath)/output.txt
 Для поиска локатора в chrome использует devtools cmd+f 
 //тег[@атрибут='значение']
 или console $x("//тег[@атрибут='значение']")
-```
-<html>
-<head>
-    <title>Мои посты</title>
-</head>
-<body>
-    <div id="posts" class="post-list">
-        <div id="post1" class="item">
-            <div class="title">Первый пост</div>
-            <img src="./images/summer.png">
-        </div>
-        <div id="post2" class="item">
-            <div class="title second">Второй пост</div>
-            <div class="title">Второй пост</div>
-            <img src="./images/summer.png">
-        </div>
-        <div id="post3" class="item">
-            <div class="title">Третий пост</div>
-            <img src="./images/summer.png">
-        </div>
-    </div>
-</body>
-</html>
-```
 
+
+```<html>```
+```<head>```
+```    <title>Мои посты</title>```
+```</head>```
+```<body>```
+```<div id="posts" class="post-list">```
+```    <div id="post1" class="item">```
+```        <div class="title">Первый пост</div>```
+```        <img src="./images/image-1.png">```
+```    </div>```
+```    <div id ="post2" class="item">```
+```        <div class="title second">Второй пост</div>```
+```       <div class="title">Второй пост</div>```
+```        <img src="./images/image-2.png">```
+```    </div>```
+```    <div id="post3" class="item">```
+```        <div class="title">Третий пост</div>```
+```        <img src="./images/image-3.png">```
+```    </div>```
+```    </div>```
+```</body>```
+```</html>```
 
 
 
