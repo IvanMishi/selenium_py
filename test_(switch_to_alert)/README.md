@@ -18,7 +18,12 @@ python3 test_(switch_to_alert)/test_A.py >> test_(switch_to_alert)/output.txt
 ```
 Где test_A.py -  скрипт с тестом, а output.txt - файл, в который будет записан вывод теста.
 
-
+### JavaScript Alerts
+```driver.switch_to``` # позволяет переключить фокус на модальное окно.
+```driver.switch_to.alert.text``` # Получить тест из модального окна.
+```driver.switch_to.alert.send_keys("text")``` # Ввести текст в модальное окно.
+```driver.switch_to.alert.accept()``` # accept() обозначает именно подтверждение.
+```driver.switch_to.alert.dismiss()``` # dismiss() обозначает  отклонить.
 
 ## Тестовые данные test_A
 - [x] Незарегестированный пользователь переходит по ссылке.
