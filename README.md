@@ -48,13 +48,13 @@ source selenium_env/bin/activate
 
 Можно также  использовать файл requirements.txt для установки всех зависимостей, в активированном окружении выполняет команду.
 
-```pip install -r requirements.txt```
+```pip3 install -r requirements.txt```
 #Файл requirements.txt добавлен в проект.
 
 
 Устанавливает библиотеку Selenium если не использовал установку из requirements.txt
 ```sh
-pip install -U selenium
+pip3 install -U selenium
 ```
 
 Обновляет pip, если требуется.
@@ -64,7 +64,7 @@ python3 -m pip install --upgrade pip
 
 Устанавливает драйвер для браузера.
 ```sh
-pip install webdriver-manager
+pip3 install webdriver-manager
 ```
 
 
