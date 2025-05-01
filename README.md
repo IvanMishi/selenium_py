@@ -17,7 +17,7 @@ mkdir selenium_tests
 mkdir selenium_env
 ```
 
-Переходит в созданную директорию.
+Переходит в созданную директорию.\
 
 ```sh
 cd selenium_env
