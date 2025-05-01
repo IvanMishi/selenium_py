@@ -66,9 +66,26 @@ python3 -m pip install --upgrade pip
 ```sh
 pip3 install webdriver-manager
 ```
+## Настраивает pycharm для запуска тестов:
+запускает PyCharm\
+Переходит в терминал PyCharm и вводит команду: \
+```python3 -m venv venv```
+В результате, в директории проекта появится папка venv.\
+
+Активирует окружение:
+```source venv/bin/activate ```
+
+Устанавливает пакеты
+```pip install -U selenium```
+или \
+``` pip3 install selenium```
+
+```pip install webdriver-manager```
+или
+``` pip3 install selenium webdriver-manager```
 
 
-## Запускает приложение:
+## Запускает приложение через терминал:
 Из директории selenium_env в активированном окружении запускает тест.
 ```sh
 python3 test_name.py
