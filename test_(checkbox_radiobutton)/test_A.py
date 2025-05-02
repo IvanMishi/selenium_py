@@ -6,7 +6,7 @@ import re  # Модуль для работы с регулярными выра
 
 
 # Ссылка на страницу.
-link = 'http://suninjuly.github.io/get_attribute.html'
+link = 'https://suninjuly.github.io/get_attribute.html'
 # Измеряет время выполнения.
 start = time.time()
 # Функция с математическим выражением вычисляет натуральный логарифм модуля произведения 12 и синуса целочисленного значения x.
@@ -17,12 +17,15 @@ def calc(x):
 with webdriver.Chrome() as driver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
     driver.get(link)  # Переходит по ссылке.
     time.sleep(1)  # Убеждается что открыта искомая страница.
+    assert link == driver.current_url, f'\nОжидаемый   URL: {link}, \nФактический URL: {driver.current_url}'  # Ошибка будет выведена в консоль в случае если URL не совпадают
+    print('Url корректный')
 
     # Находит элемент с идентификатором 'treasure', извлекает его значение из атрибута 'valuex' и вычисляет его с помощью функции calc.
     x = calc(driver.find_element(By.CSS_SELECTOR, "[id='treasure']").get_attribute("valuex"))
 
-    # Заполняет поле ввода текста на веб-странице данными из переменной x
+    # Находит и заполняет поле ввода текста на веб-странице данными из переменной x.
     input_area = driver.find_element(By.CSS_SELECTOR, "[type='text']").send_keys(x)
+    print('Поле ввода дайдено и заполнено')
 
     # Отмечает чекбокс на веб-странице
     checkbox_button = driver.find_element(By.CSS_SELECTOR, "[id='robotCheckbox']")
@@ -35,7 +38,6 @@ with webdriver.Chrome() as driver:  # Создаёт экземпляр драй
     radio_button.click()
     if radio_button.is_selected():
         print('Радиокнопка выбрана')
-
 
     # Нажимает кнопку отправки формы на веб-странице
     button_submit = driver.find_element(By.CSS_SELECTOR, "[type='submit']").click()
@@ -50,6 +52,6 @@ with webdriver.Chrome() as driver:  # Создаёт экземпляр драй
     # Принимает и закрывает alert путем нажатия кнопки "OK" (accept)
     alert.accept()
 
-    # Завершение отсчета времени
-    end = time.time()
-    print(f"Время выполнения: {end - start} секунд.")
+# Завершение отсчета времени
+end = time.time()
+print(f"Время выполнения: {end - start} секунд.")
