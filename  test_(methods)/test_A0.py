@@ -9,14 +9,17 @@ start = time.time()
 expected_result = "Thank you for submitting the form!"
 
 
-with webdriver.Chrome() as webdriver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
-    webdriver.get(link)  # Переходит по ссылке.
+with webdriver.Chrome() as driver:  # Создаёт экземпляр драйвера Chrome и автоматически закрывает его по завершении блока кода.
+    driver.get(link)  # Переходит по ссылке.
     time.sleep(1)  # Убеждается что открыта искомая страница.
+    # Ошибка будет выведена в консоль в случае если URL не совпадают.
+    assert link == driver.current_url, f'\nОжидаемый   URL: {link}, \nФактический URL: {driver.current_url}'
 
 
-    # Находит поле для ввода текста на веб-странице
-    textarea = webdriver.find_element("id", "clickButton").click()
-    print(f'Ответ: {webdriver.find_element("id", "codeOutput").text}')
+    print('Находит кнопку на веб-странице и выполняет по ней клик.')
+    textarea = driver.find_element("id", "clickButton").click()
+    print('Выводит текст из появившегося элемента  в качестве ответа в консоль.')
+    print(f'Ответ: {driver.find_element("id", "codeOutput").text}')
 
 
 # Завершение отсчета времени
