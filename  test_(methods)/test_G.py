@@ -20,7 +20,8 @@ with webdriver.Chrome() as driver:  # Создаёт экземпляр драй
     now_date = datetime.datetime.now().strftime("%H.%M.%S-%Y.%m.%d")
     print('Имя уникального скриншота с датой и временем.')
     name_screenshot = "screenshot " + now_date + ".png"
-    print('Скриншот по найденному элементу в директорию созданную в проекте')
+    print(name_screenshot)
+    print('Скриншот по найденному элементу  сохранен в директорию созданную в проекте в папке screen')
     driver.find_element(By.ID, "this_pic").screenshot('screen/' + name_screenshot)
 
 
