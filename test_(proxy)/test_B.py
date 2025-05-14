@@ -3,14 +3,14 @@ from selenium import webdriver  # Модуль для взаимодействи
 from selenium.webdriver.common.by import By  # Модуль для определения способов поиска элементов на странице
 
 
-# Определяет адрес прокси-сервера, который будет использоваться для интернет-соединения.
-#proxy = '8.210.83.33:80'
+print('Определяет адрес прокси-сервера, который будет использоваться для интернет-соединения.')
+proxy = '8.210.83.33:80'
 # Cсылка на страницу
 link = 'https://2ip.ru/'
 # Создает объект ChromeOptions для настройки параметров браузера Chrome.
 chrome_options = webdriver.ChromeOptions()
 # Добавляет аргумент с прокси-сервером в настройки браузера.
-#chrome_options.add_argument('--proxy-server=%s' % proxy)
+chrome_options.add_argument('--proxy-server=%s' % proxy)
 # Измеряет время выполнения
 start = time.time()
 
