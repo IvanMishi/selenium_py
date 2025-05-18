@@ -23,15 +23,23 @@ with webdriver.Chrome() as driver:
     # Ошибка будет выведена в консоль в случае если URL не совпадают.
     assert link == driver.current_url, f'\nОжидаемый   URL: {link}, \nФактический URL: {driver.current_url}'
 
-    # Создание локатора ндля выбора даты на 10 дней вперед от текущей
-    print('Определяет текущую дату')
-    now_date = datetime.datetime.utcnow().strftime("%m,%d,%Y")
-    print(f'Сегодняшняя дата {now_date.replace(",", "/")}')
-    print('Устанавливает к текущей дате 10 дней')
-    date_future = int(now_date.split(",")[1]) + 10
-    print(f'Дата через десять дней: {date_future} число')
-    print('Создает локатор для выбора элемента на 10 днй вперед от текущей даты')
-    locator_new_date = f"//div[@aria-label='Choose Tuesday, May {date_future}th, 2025']"
+    # Создание локатора для выбора даты на 10 дней вперед от текущей
+    print('Определяет текущую дату и прибаляет к ней 10 дней')
+    future_date = datetime.datetime.utcnow() + datetime.timedelta(days=10)
+    print(f'Через 10 дней будет {future_date}')
+
+
+    print('Создает локатор для выбора элемента на 10 дней вперед от текущей даты')
+    # Форматирует дату
+    day = future_date.strftime("%d").lstrip("0")  # Убираем ноль в начале
+    day_suffix = "th" if 4 <= int(day) <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(int(day[-1]), "th")
+
+    month = future_date.strftime("%B")  # Полное название месяца
+    year = future_date.strftime("%Y")  # Полный год
+    # Получает день недели в формате его названия.
+    weekday = future_date.strftime("%A")
+    # Формирует локатор
+    locator_new_date = f"//div[@aria-label='Choose {weekday}, {month} {day}{day_suffix}, {year}']"
     print(f'Синтаксис созданого локатора: {locator_new_date}')
 
 
@@ -42,7 +50,7 @@ with webdriver.Chrome() as driver:
     print('Визуально убеждается что текущая дата удалена')
     time.sleep(3)
     print('Устаеавливает текущую дату повторно')
-    date_area.send_keys(f'{now_date.replace("," , "/")}')
+    date_area.send_keys(f'{datetime.datetime.utcnow().strftime("%m/%d/%Y")}')
     print('Визуально убеждается что текущая дата установлена')
     time.sleep(3)
 
@@ -53,4 +61,3 @@ with webdriver.Chrome() as driver:
     date_area.send_keys(Keys.RETURN)
     print('Визуально убеждается дата установлена успешно')
     time.sleep(5)
-
